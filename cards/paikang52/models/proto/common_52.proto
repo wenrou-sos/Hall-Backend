@@ -1,0 +1,102 @@
+syntax = "proto3";
+package common52.proto;
+
+message Header {
+    EMSGID msgid                                                        = 1;
+}
+
+enum EMSGID {
+    eReserved                                                           = 0;
+
+    eAutoTransferCall                                                   = 3000;
+    eAutoTransferRecall                                                 = 3001;
+    eAutoTransferOutCall                                                = 3002;
+    eAutoTransferOutRecall                                              = 3003;
+
+    eBroadcastDrawRecall                                                = 3100;
+    eBroadcastDrawTimeout                                               = 3101;
+    eBroadcastResult                                                    = 3102;
+    eBroadcastDrawRoundStart                                            = 3103;
+    eBroadcastDrawRoundEnd                                              = 3104;
+    eBroadcastCallCardsRecall                                           = 3105;
+    eBroadcastPlayCardsRecall                                           = 3106;
+    eBroadcastPlayCardsTimeout                                          = 3107;
+    eBroadcastPlayRoundStart                                            = 3108;
+
+    eCallCardscall                                                      = 3200;
+    eCallCardsRecall                                                    = 3201;
+
+    eDepositCall                                                        = 3300;
+    eDepositRecall                                                      = 3301;
+    eDeal                                                               = 3302;
+    eDrawCall                                                           = 3303;
+    eDrawRecall                                                         = 3304;
+    eDrawTimeout                                                        = 3305;
+    eDrawRoundStart                                                     = 3306;
+    eDrawRoundEnd                                                       = 3307;
+
+    eE                                                                  = 3400;
+
+    eFriendRoomJoinCall                                                 = 3500;
+    eFriendRoomJoinRecall                                               = 3501;
+    eFriendRoomLeaveCall                                                = 3502;
+    eFriendRoomLeaveRecall                                              = 3503;
+    eFriendRoomDestroy                                                  = 3504;
+    eFriendRoomHostChanged                                              = 3505;
+    eFriendRoomGameStart                                                = 3506;
+
+    eG                                                                  = 3600;
+
+    eH                                                                  = 3700;
+
+    eInquireCall                                                        = 3800;
+    eInquireRecall                                                      = 3801;
+
+    eJ                                                                  = 3900;
+
+    eK                                                                  = 4000;
+
+    eL                                                                  = 4100;
+
+    eM                                                                  = 4200;
+
+    eN                                                                  = 4300;
+
+    eO                                                                  = 4400;
+
+    ePlayCardsCall                                                      = 4500;
+
+    ePlayCardsRecall                                                    = 4501;
+    ePlayCardsTimeout                                                   = 4502;
+    ePlayRoundStart                                                     = 4503;
+    ePlayResult                                                         = 4504;
+
+
+    eQ                                                                  = 4600;
+
+    eRoundStart                                                         = 4700;
+    eRoundEnd                                                           = 4701;
+    eResult                                                             = 4702;
+
+    eShowdownCall                                                       = 4800;
+    eShowdownReCall                                                     = 4801;
+
+    eT                                                                  = 4900;
+
+    eU                                                                  = 5000;
+
+    eV                                                                  = 5100;
+
+    eWithdrawCall                                                       = 5200;
+    eWithdrawRecall                                                     = 5201;
+    eWaitingRoundStart                                                  = 5202;
+    eWaitingRoundEnd                                                    = 5203;
+    eWaitingCountdown                                                   = 5204;
+
+
+    eX                                                                  = 5300;
+
+    eY                                                                  = 5400;
+
+    eZ                                                                  = 5500;
+}

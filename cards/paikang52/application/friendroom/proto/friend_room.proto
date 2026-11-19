@@ -1,0 +1,58 @@
+syntax = "proto3";
+package friend.room.proto;
+
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.1.2/proto/common.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/game-setting@v0.0.8/proto/game_setting.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/lobby-setting@v0.0.9/proto/lobby_setting.proto";
+import "52-game-server/models/proto/common_52.proto";
+import "52-game-server/application/gamesetting52/proto/game_setting_52.proto";
+import "52-game-server/application/lobbysetting52/proto/lobby_setting_52.proto";
+
+message FriendRoomJoinCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    game.setting.proto.ConfigCall game_config_call                         = 2;
+    int32 number                                                           = 3;
+}
+
+message FriendRoomJoinRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    game.setting52.proto.ConfigRecall game_config_recall                   = 3;
+    int32 number                                                           = 4;
+}
+
+message FriendRoomLeaveCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    lobby.setting.proto.ConfigCall lobby_config_call                       = 2;
+    int32 number                                                           = 3;
+}
+
+message FriendRoomLeaveRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    lobby.setting52.proto.ConfigRecall lobby_config_recall                 = 3;
+    int32 number                                                           = 4;
+    string uuid                                                            = 5;
+}
+
+message FriendRoomDestroy {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    lobby.setting52.proto.ConfigRecall lobby_config_recall                 = 3;
+    int32 number                                                           = 4;
+    string uuid                                                            = 5;
+}
+
+message FriendRoomHostChanged {
+    common52.proto.EMSGID msgid                                            = 1;
+    int32 number                                                           = 2;
+    string uuid                                                            = 3;
+    string uid                                                             = 4;
+    int32 seat                                                             = 5;
+}
+
+message FriendRoomGameStart {
+    common52.proto.EMSGID msgid                                            = 1;
+    int32 number                                                           = 2;
+    string uuid                                                            = 3;
+}

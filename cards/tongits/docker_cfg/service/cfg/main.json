@@ -1,0 +1,32 @@
+{
+    "port" : service_port,
+    "redis_cfg_path" : "cfg/redis.json",
+    "mysql_cfg_path" : "cfg/mysql.json",
+    "async" : {
+        "worker_cnt" : 16,
+        "queue_size" : 128,
+        "sleep_time" : 0.01
+    },
+    "xxtkey" : "c8fa34e690b24c3e",
+    "faceid" : [0, 17],
+    "frame_id" : [0, 199],
+    "designation_id" : [0, 199],
+    "card_style_id" : [0, 100],
+    "ps_urls" : {
+        "login" : "https://ps_api_addr/proxy/psx1/login",
+        "logout": "https://ps_api_addr/proxy/psx1/logout",
+        "getbalance" : "https://ps_api_addr/proxy/psx1/getbalance",
+        "rollin": "https://ps_api_addr/proxy/psx1/rollin",
+        "rollout" : "https://ps_api_addr/proxy/psx1/rollout",
+        "get_host_game_info": "https://ps_api_addr/host/gethostgameinfo"
+    },
+    "dbg_lv" : 0,
+    "redis_dbg_lv" : 1,
+    "mysql_dbg_lv" : 1,
+    "ssl" : {
+        "certfile" : "cfg/ssl/claretfox.com.crt",
+        "keyfile" : "cfg/ssl/claretfox.com-dec.key"
+    },
+    "mm_save_myself_url": "",
+    "server_math_info": "https://ps_api_addr/proxy/psx1/ServerMathInfo"
+}

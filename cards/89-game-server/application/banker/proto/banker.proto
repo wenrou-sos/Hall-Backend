@@ -1,0 +1,30 @@
+syntax = "proto3";
+package banker.proto;
+
+import "89-game-server/models/proto/common_89.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/auth@v0.0.9/proto/auth.proto";
+
+message RoundStart {
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    repeated auth.proto.PlayerInfo player_infos                            = 3;
+}
+
+message RoundEnd {
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+}
+
+message Deal {
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    repeated Card cards                                                    = 3;
+}
+
+message Card {
+    int32 seat                                                             = 1;
+    repeated int32 hand                                                    = 2;
+    int32 sum_point                                                        = 3;
+    uint32 pay                                                             = 4;
+    int32 rule                                                             = 5;
+}

@@ -1,0 +1,29 @@
+{
+    "dbs" : {
+        "game" : {
+            "host" : "mysql_ip",
+            "user" : "mysql_user",
+            "password" : "mysql_pwd",
+            "database" : "dmgame",
+            "port" : mysql_port,
+            "charset" : "utf8",
+            "max_connection" : 16,
+            "async_mode" : 1,
+            "queue_size" : 128,
+            "sleep_time" : 0.02,
+            "workers" : 4
+        },
+        "log" : {
+            "host" : "mysql_ip",
+            "user" : "mysql_user",
+            "password" : "mysql_pwd",
+            "database" : "dmgamelog",
+            "port" : mysql_port,
+            "charset" : "utf8",
+            "max_connection" : 1,
+            "async_mode" : 1,
+            "queue_size" : 128,
+            "sleep_time" : 0.02
+        }
+    }
+}

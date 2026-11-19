@@ -1,0 +1,39 @@
+syntax = "proto3";
+package play.cards.proto;
+
+import "u-game-server/models/proto/commonU.proto";
+import "u-game-server/domain/probability/proto/probability.proto";
+
+message PlayCardsCall {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 seat                                                             = 3;
+    repeated int32 cards                                                   = 4;
+    int32 color                                                            = 5;
+}
+
+message PlayCardsRecall {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    probability.proto.PlayerData player_data                               = 3;
+    int32 color                                                            = 4;
+}
+
+message BroadcastPlayCardsRecall {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    PlayCardsRecall play_cards_recall                                      = 3;
+}
+
+message PlayCardsTimeout {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    probability.proto.PlayerData player_data                               = 3;
+    int32 color                                                            = 4;
+}
+
+message BroadcastPlayCardsTimeout {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    PlayCardsTimeout play_cards_timeout                                    = 3;
+}

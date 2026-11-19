@@ -1,0 +1,11 @@
+{
+    "port" : 9138,
+    "max_connections": 256,
+
+    "redis_cfg_path" : "cfg/redis.json",
+    "mysql_cfg_path" : "cfg/mysql.json",
+
+    "dbg_lv" : 0,
+    "redis_dbg_lv" : 1,
+    "mysql_dbg_lv" : 1
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+package probability.proto;
+
+import "colorgame-game-server/models/proto/common_FS.proto";
+
+message Deal {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 dice1                                                            = 3;
+    int32 dice2                                                            = 4;
+    int32 dice3                                                            = 5;
+    int32 fireColorType                                                    = 6;
+    uint64 fireWin                                                         = 7;
+}
+
+message Record {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    repeated Deal records                                                  = 2;
+}

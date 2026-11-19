@@ -1,0 +1,28 @@
+{
+    "dbs" : {
+        "game" : {
+            "host" : "127.0.0.1",
+            "user" : "root",
+            "password" : "123456",
+            "database" : "game",
+            "port" : 3306,
+            "charset" : "utf8",
+            "max_connection" : 32,
+            "async_mode" : 0,
+            "queue_size" : 1024,
+            "sleep_time" : 0.02
+        },
+        "log" : {
+            "host" : "127.0.0.1",
+            "user" : "root",
+            "password" : "123456",
+            "database" : "gamelog",
+            "port" : 3306,
+            "charset" : "utf8",
+            "max_connection" : 80,
+            "async_mode" : 1,
+            "queue_size" : 1024,
+            "sleep_time" : 0.02
+        }
+    }
+}

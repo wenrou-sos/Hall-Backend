@@ -1,0 +1,467 @@
+syntax = "proto3";
+package c_l_lobby;
+
+enum e_cl_msgid{
+	e_cl_msgid_null 						= 0;
+	e_cl_msgid_register 					= 1000;
+	e_cl_msgid_logon 						= 1001;
+	e_cl_msgid_logout						= 1002;
+	e_cl_msgid_broadcast 					= 1003;
+	e_cl_msgid_smscode_get 					= 1004;
+	e_cl_msgid_smscode_verify 				= 1005;
+	e_cl_msgid_pwd_reset 					= 1006;
+	e_cl_msgid_account_delete 				= 1007;
+	e_cl_msgid_nickname_change 				= 1008;
+	e_cl_msgid_nickname_get 				= 1009;
+	e_cl_msgid_phone_bind 					= 1010;
+	e_cl_msgid_dev_bind 					= 1011;
+	e_cl_msgid_dev_unbind 					= 1012;
+	e_cl_msgid_card_use 					= 1013;
+	e_cl_msgid_score_get 					= 1014;
+	e_cl_msgid_game_list_get 				= 1015;
+	e_cl_msgid_bank_get 					= 1016;
+	e_cl_msgid_bank_pwd_set 				= 1017;
+	e_cl_msgid_bank_pwd_reset 				= 1018;
+	e_cl_msgid_bank_operate 				= 1019;
+	e_cl_msgid_bank_record_get 				= 1020;
+	e_cl_msgid_bank_rebate_get 				= 1021;
+	e_cl_msgid_mail_get 					= 1022;
+	e_cl_msgid_mail_delete 					= 1023;
+	e_cl_msgid_mail_notify 					= 1024;
+	e_cl_msgid_game_server_notify 			= 1025;
+	e_cl_msgid_phone_change 				= 1026;
+	e_cl_msgid_face_set 					= 1027;
+	e_cl_msgid_account_change 				= 1028;
+	e_cl_msgid_sign 						= 1029;
+	e_cl_msgid_rank 						= 1030;
+	e_cl_msgid_ctl_request 					= 6666;
+	e_cl_msgid_ctl_dismissgame				= 6667;  // 解散指定房間的整桌
+	e_cl_msgid_ctl_dismissroom				= 6668;  // 解散指定房間的整廳
+	e_cl_msgid_ctl_response 				= 9999;
+	e_cl_msgid_ctl_getplayerlist 			= 9998;	
+}
+
+enum e_user_type{
+	unknown							= 0;
+	player_unbind					= 1;
+	player_bind						= 2;
+	guest							= 3;
+	business						= 6;
+	market							= 7;
+}
+
+enum e_user_logout_type{
+	logout_none					 = 0;
+	logout_quit_game			 = 1;
+	logout_offline				 = 2;
+	logout_kicked				 = 3;
+	logout_user					 = 4;
+	logout_lobby				 = 5;
+	logout_relogin				 = 6;
+	logout_kick_timeout			 = 7;
+}
+
+enum e_rank_type{
+	ert_day_reward				 = 0;
+	ert_reward_pool				 = 1;
+	day_game_reward				 = 2;
+	special_rank				 = 3;
+}
+
+enum e_smscode_type{
+	smscode_none				 = 0;
+	smscode_register			 = 1;
+	smscode_bind				 = 2;
+	smscode_reset				 = 3;
+	smscode_reset_bank			 = 4;
+	smscode_dev_verify			 = 5;
+	smscode_change_phone		 = 6;
+}
+
+enum e_broadcast_type{
+	e_bt_null					 = 0;
+	e_bt_maintenance			 = 1;
+	e_bt_bigreward				 = 2;
+	e_bt_selfbigreward			 = 3;	
+}
+
+enum e_bank_operate_type{
+	ebot_null					 = 0;
+	ebot_bank_in				 = 1;
+	ebot_bank_out				 = 2;
+	ebot_transfer_in			 = 3;	
+	ebot_trnasfer_out			 = 4;
+}
+
+enum e_bank_transfer_type{
+	ebank_transfer_out			 = 0;
+	ebank_transfer_in			 = 1;
+	ebank_transfer_inout		 = 2;
+}
+
+message msg_broadcast{
+	e_broadcast_type msg_type			= 1;
+	int32 msg_template_id				= 2;
+	repeated bytes param_list			= 3;
+}
+
+message msg_get_smscode{
+	int64 phone						= 1;
+	e_smscode_type smscode_type		= 2;
+}
+
+message msg_get_smscode_ret{
+	int32 ret						= 1;
+}
+
+message msg_verify_smscode{
+	int64 phone						= 1;
+	int32 smscode					= 2;
+	e_smscode_type smscode_type		= 3;
+}
+
+message msg_verify_smscode_ret{
+	int32 ret						= 1;
+}
+
+message user_data{
+	int32 uuid				= 1;
+	bytes account			= 2;
+	bytes nickname			= 3;
+	int64 game_id			= 4;
+	int64 phone				= 5;
+	int32 user_type			= 6;
+	int32 user_kind			= 7;
+	uint32 faceid			= 8;
+	uint32 experience		= 9;
+	int32 sex				= 10;
+	int64 score				= 11;
+	int64 bank_score		= 12;
+	int32 device_type		= 13;
+	int32 bind_machine		= 14;
+	int32 inviter_uuid		= 15;
+	bytes invite_code		= 16;
+	bool bank_opened		= 17;
+	int64 card_score 		= 18;
+}
+
+message msg_register{
+	bytes account			= 1;
+	bytes pwd				= 2;
+	bytes device_id			= 3;
+	bytes nickname			= 4;
+	int64 phone				= 5;
+	int32 smscode			= 6;
+	int32 device_type		= 7;
+	bytes address			= 8;
+}
+
+message msg_register_ret{
+	int32 ret				= 1;
+}
+
+message msg_logon{
+	int32 version			= 1;
+	int32 logon_type		= 2;
+	bytes account			= 3;
+	bytes pwd				= 4;
+	int32 device_type		= 5;
+	bytes device_id			= 6;
+	bytes address			= 7;
+	int32 phonetailnum		= 8;
+}
+
+message msg_logon_ret{
+	int32 ret					= 1;
+	user_data userinfo			= 2;
+	int32 token					= 3;
+	int32 game_server_id		= 4;
+	int32 sign_count			= 5;
+	int32 sign_time				= 6;
+	int32 sign_open				= 7;
+}
+
+message msg_logout{
+}
+
+message msg_logout_ret{
+	e_user_logout_type logout_type			= 1;
+}
+
+message msg_reset_pwd{
+	int64 phone					= 1;
+	bytes new_pwd				= 2;
+}
+
+message msg_reset_pwd_ret{
+	int32 ret			= 1;
+}
+
+message msg_delete_account{
+}
+
+message msg_delete_account_ret{
+	int32 ret			= 1;
+}
+
+message msg_change_nickname{
+	bytes nickname		= 1;
+}
+
+message msg_change_nickname_ret{
+	int32 ret			= 1;
+}
+
+message msg_get_nickname{
+	int64 game_id		= 1;
+}
+
+message msg_get_nickname_ret{
+	int32 ret			= 1;
+	bytes nickname		= 2;
+}
+
+message msg_bind_dev{
+	bytes device_id			= 1;
+	bytes passwd			= 2;
+}
+
+message msg_bind_dev_ret{
+	int32 ret			= 1;
+}
+
+message msg_unbind_dev{
+	bytes account			= 1;
+	bytes pwd				= 2;
+	bytes passwd			= 3;
+}
+
+message msg_unbind_dev_ret{
+	int32 ret			= 1;
+}
+
+message msg_use_card{
+	bytes card_no			= 1;
+}
+
+message msg_use_card_ret{
+	int32 ret				= 1;
+	int64 delta_score		= 2;
+	int64 score				= 3;
+}
+
+message msg_get_score{
+}
+
+message msg_get_score_ret{
+	int64 score				= 1;
+}
+
+message game_server_data{
+	bytes server_uuid		= 1;
+	bytes hash_key			= 2;
+	bytes host_api_key		= 3;
+	int32 subgame_id		= 4;
+	bytes server_addr		= 5;
+	int32 server_port		= 6;
+	int32 server_type		= 7;
+	int64 cell_score		= 10;
+	int64 admission_score	= 11;
+	int32 max_player		= 15;
+	int32 cur_player		= 16;
+	int32 context_id		= 20;
+}
+
+message get_game_server_list{
+}
+
+message get_game_server_list_ret{
+	repeated game_server_data gslist		= 1;
+}
+
+message msg_get_bank{
+	bytes bank_pwd			= 1;
+}
+
+message msg_get_bank_ret{
+	int32 ret			= 1;
+	uint64 score		= 2;
+	uint64 bank_score	= 3;
+}
+
+message msg_set_bank_pwd{
+	bytes bank_pwd			= 1;
+}
+
+message msg_set_bank_pwd_ret{
+	int32 ret			= 1;
+}
+
+message msg_reset_bank_pwd{
+	bytes bank_pwd			= 1;
+}
+
+message msg_reset_bank_pwd_ret{
+	int32 ret			= 1;
+}
+
+message msg_operate_bank{
+	e_bank_operate_type operate_type		= 1;
+	uint64 score							= 2;
+	int64 target_game_id					= 3;
+}
+
+message msg_operate_bank_ret{
+	int32 ret								= 1;
+	e_bank_operate_type operate_type		= 2;
+	uint64 score							= 3;
+	uint64 bank_score						= 4;
+}
+
+message operate_record_data{
+	bytes operate_time						= 1;
+	e_bank_transfer_type transfer_type		= 2;
+	uint64 score							= 3;
+	int64 target_gameid						= 4;
+	bytes target_nickname					= 5;
+	uint64 bank_score						= 6;
+	int32 valid								= 7;
+	int32 transfer_id						= 8;
+}
+
+message msg_get_bank_record{
+	e_bank_transfer_type transfer_type		= 1;
+	int32 page								= 2;
+	int32 count								= 3;
+}
+
+message msg_get_bank_record_ret{
+	int32 ret								= 1;
+	int32 count								= 2;
+	repeated operate_record_data records	= 3;
+}
+
+message rebate_record_data{
+	int64 score								= 1;
+	int32 delta_week						= 2;
+}
+
+message msg_get_bank_rebate{
+}
+
+message msg_get_bank_rebate_ret{
+	int32 ret								= 1;
+	repeated rebate_record_data records		= 2;
+}
+
+message mail_data{
+	int32 mail_type				= 1;
+	int64 sender_uuid			= 2;
+	bytes sender_name			= 3;
+	bytes title					= 4;
+	bytes content				= 5;
+	int64 send_time				= 6;
+	int64 expire_time			= 7;
+	int32 is_read				= 8;
+}
+
+message msg_get_mail{
+	int32 page					= 1;
+	int32 count					= 2;
+}
+
+message msg_get_mail_ret{
+	int32 mail_count				= 1;
+	int32 cur_page					= 2;
+	repeated mail_data mail_list	= 3;
+}
+
+message msg_delete_mail{
+}
+
+message msg_delete_mail_ret{
+	int32 ret								= 1;
+}
+
+message msg_notify_mail_ret{
+}
+
+message msg_notify_game_server{
+	int32 status					= 1;
+	game_server_data server_info	= 2;
+}
+
+message msg_change_phone{
+	int64 old_phone					= 1;
+	int64 new_phone					= 2;
+	int32 smscode					= 3;
+}
+
+message msg_change_phone_ret{
+	int32 ret								= 1;
+}
+
+message msg_set_face{
+	int32 holder					= 1;
+	int32 faceid					= 2;
+}
+
+message msg_set_face_ret{
+	int32 ret						= 1;
+	int32 faceid					= 2;
+}
+
+message msg_change_account{
+	bytes old_account			= 1;
+	bytes new_account			= 2;
+}
+
+message msg_change_account_ret{
+	int32 ret						= 1;
+}
+
+message msg_sign{
+}
+
+message msg_sign_ret{
+	int32 ret					= 1;
+	int64 sign_score			= 2;
+	int32 sign_count			= 3;
+	int32 sign_time				= 4;
+}
+
+message msg_rank_request{
+	int32 rank_type				= 1;
+}
+
+message rank_data{
+	int32 game_id				= 1;
+	bytes nickname				= 2;
+	int32 faceid				= 3;
+	int64 score					= 4;
+}
+
+message msg_rank_response{
+	int32 rank_type				= 1;
+	repeated rank_data rank		= 2;
+}
+
+message msg_clt_request{
+	bytes rpc_name				= 1;
+	bytes json					= 2;
+	int32 context_id			= 3;
+	string nick_name            = 4;
+	string channel              = 5;
+}
+
+message msg_clt_response{
+	bytes rpc_name				= 1;
+	bytes json					= 2;
+	int32 context_id			= 3;
+	bool route					= 4;
+}
+
+message msg_clt_get_playerlist_ret{
+	repeated int32 uuids			= 1;
+}
+

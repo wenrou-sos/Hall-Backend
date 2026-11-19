@@ -1,0 +1,70 @@
+{
+"2001": {
+            "type": 0,
+            "url":  "/static/images/",
+            "desc": "Gash 點數開通說明",
+            "title": "Gash 點數儲值說明"
+        },
+
+"2011":{
+            "type": 0,
+            "url": "/static/images/lobbyuihelp.jpg",
+            "desc": "大廳介面說明",
+            "title": "大廳介面說明"
+       },
+"2012":{
+            "type": 0,
+            "url": "/static/images/gameuihelp.jpg",
+            "desc": "遊戲介面說明",
+            "title": "遊戲介面說明"
+       },
+"2021":{
+            "type": 0,
+            "url": "/static/images/viphelp.jpg",
+            "desc": "VIP層級介紹",
+            "title": "VIP層級介紹"
+       },
+"2031":{
+            "type": 0,
+            "url": "/static/images/gifthelp.jpg",
+            "desc": "贈禮說明",
+            "title": "贈禮說明"
+       },
+"2041":{
+            "type": 0,
+            "url": "/static/images/activeuihelp.jpg",
+            "desc": "活躍度說明",
+            "title": "活躍度說明"
+       },
+"2051":{
+            "type": 1,
+            "url": "/setting/qanda.html",
+            "desc": "常見說明 html",
+            "title": "常見說明"
+       },
+"2061":{
+            "type": 1,
+            "url": "/setting/formdownload.html",
+            "desc": "表單下載 html",
+            "title": "表單下載"
+       },
+"2071":{
+            "type": 1,
+            "url": "/setting/useagreement.html",
+            "desc": "使用條款",
+            "title": "使用條款"
+       },
+"2081":{
+             "type": 1,
+             "url": "/setting/privacyagreement.html",
+             "desc": "隱私條款",
+             "title": "隱私條款"
+       },
+"2091":{
+              "type": 1,
+              "url": "/setting/gameagreement.html",
+              "desc": "遊戲規章",
+              "title": "遊戲規章"
+       }
+
+}

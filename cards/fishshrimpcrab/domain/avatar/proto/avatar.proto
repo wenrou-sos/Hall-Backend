@@ -1,0 +1,15 @@
+syntax = "proto3";
+package avatar.proto;
+
+import "fish-shrimp-crab-game-server/models/proto/common_FS.proto";
+
+message AvatarChangeCall {
+  commonFS.proto.EMSGID msgid                                              = 1;
+  string avatarId                                                          = 2;
+}
+
+message AvatarChangeRecall {
+  commonFS.proto.EMSGID msgid                                              = 1;
+  int32 status                                                             = 2;
+  string avatarId                                                          = 3;
+}

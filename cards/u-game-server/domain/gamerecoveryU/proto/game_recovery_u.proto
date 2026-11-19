@@ -1,0 +1,21 @@
+syntax = "proto3";
+package gamerecovery.u.proto;
+
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.0.8/proto/common.proto";
+
+message GameRecovery {
+    common.proto.EMSGID msgid                                              = 1;
+    Snapshot snapshot                                                      = 2;
+}
+
+message Snapshot {
+    string server_id                                                       = 1;
+    string room_uuid                                                       = 2;
+    string room_type                                                       = 3;
+    int32 seat                                                             = 4;
+    int32 subgame_id                                                       = 5;
+    uint32 rate                                                            = 6;
+    uint32 bet_idx                                                         = 7;
+    int32 status                                                           = 8;
+    string banker_uuid                                                     = 9;
+}

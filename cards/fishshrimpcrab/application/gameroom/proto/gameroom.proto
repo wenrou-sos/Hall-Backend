@@ -1,0 +1,38 @@
+syntax = "proto3";
+package gameroom.proto;
+
+import "fish-shrimp-crab-game-server/models/proto/common_FS.proto";
+
+message RoundStart {
+  commonFS.proto.EMSGID msgid  = 1;
+  string room_uuid             = 2;
+}
+
+message RoundEnd {
+  commonFS.proto.EMSGID msgid = 1;
+  string room_uuid            = 2;
+}
+
+message KickOutWarn {
+  commonFS.proto.EMSGID msgid = 1;
+  string room_uuid            = 2;
+}
+
+message GameroomHistoryCall {
+  commonFS.proto.EMSGID msgid = 1;
+  string room_uuid = 2;
+}
+
+message GameroomHistoryRecall {
+  commonFS.proto.EMSGID msgid = 1;
+  repeated History histories = 2;
+}
+
+message History {
+  repeated int32 dices = 1;
+}
+
+//玩家離房的回傳
+message ActionLeaveGameRoomRecall {
+  commonFS.proto.EMSGID msgid = 1;
+}

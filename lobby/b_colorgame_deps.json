@@ -1,0 +1,106 @@
+{
+ "gitlab.iplaystar.net/game-server/accounting": {
+  "dir": "accounting",
+  "used": "v0.1.9"
+ },
+ "gitlab.iplaystar.net/game-server/auth": {
+  "dir": "auth",
+  "used": "v0.3.0"
+ },
+ "gitlab.iplaystar.net/game-server/common": {
+  "dir": "common",
+  "used": "v0.1.2"
+ },
+ "gitlab.iplaystar.net/game-server/error-code": {
+  "dir": "error-code",
+  "used": "v0.0.5"
+ },
+ "gitlab.iplaystar.net/game-server/flux": {
+  "dir": "flux",
+  "used": "v0.0.5"
+ },
+ "gitlab.iplaystar.net/game-server/format": {
+  "dir": "format",
+  "used": "v0.0.3"
+ },
+ "gitlab.iplaystar.net/game-server/game-setting": {
+  "dir": "game-setting",
+  "used": "v0.1.0"
+ },
+ "gitlab.iplaystar.net/game-server/game-user": {
+  "dir": "game-user",
+  "used": "v0.1.7"
+ },
+ "gitlab.iplaystar.net/game-server/heart-beat": {
+  "dir": "heart-beat",
+  "used": "v0.0.6"
+ },
+ "gitlab.iplaystar.net/game-server/idle": {
+  "dir": "idle",
+  "used": "v0.0.5"
+ },
+ "gitlab.iplaystar.net/game-server/lobby-room": {
+  "dir": "lobby-room",
+  "used": "v0.0.1"
+ },
+ "gitlab.iplaystar.net/game-server/lobby-setting": {
+  "dir": "lobby-setting",
+  "used": "v0.1.4"
+ },
+ "gitlab.iplaystar.net/game-server/logger": {
+  "dir": "logger",
+  "used": "v1.0.1"
+ },
+ "gitlab.iplaystar.net/game-server/maintain": {
+  "dir": "maintain",
+  "used": "v0.0.2"
+ },
+ "gitlab.iplaystar.net/game-server/mysql": {
+  "dir": "mysql",
+  "used": "v0.0.7"
+ },
+ "gitlab.iplaystar.net/game-server/player": {
+  "dir": "player",
+  "used": "v0.0.2"
+ },
+ "gitlab.iplaystar.net/game-server/postman": {
+  "dir": "postman",
+  "used": "v0.0.3"
+ },
+ "gitlab.iplaystar.net/game-server/refundbet-tool": {
+  "dir": "refundbet-tool",
+  "used": "v0.0.3"
+ },
+ "gitlab.iplaystar.net/game-server/rng": {
+  "dir": "rng",
+  "used": "v0.0.1"
+ },
+ "gitlab.iplaystar.net/game-server/session": {
+  "dir": "session",
+  "used": "v0.0.4"
+ },
+ "gitlab.iplaystar.net/game-server/session-manager": {
+  "dir": "session-manager",
+  "used": "v1.0.0"
+ },
+ "gitlab.iplaystar.net/game-server/wallet": {
+  "dir": "wallet",
+  "used": "v1.0.1"
+ },
+ "gitlab.iplaystar.net/game-server/http": {
+  "dir": "http",
+  "used": "v0.0.5"
+ },
+ "gitlab.iplaystar.net/game-server/broadcaster": {
+  "dir": "broadcaster",
+  "used": "v0.0.2"
+ },
+ "gitlab.iplaystar.net/game-server/mac-address": {
+  "dir": "mac-address",
+  "used": "v0.0.1"
+ },
+ "gitlab.iplaystar.net/game-server/redis": {
+  "dir": "redis",
+  "used": "v0.0.2"
+ }
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+package playdata.proto;
+
+import "fish-shrimp-crab-game-server/models/proto/common_FS.proto";
+import "fish-shrimp-crab-game-server/domain/bet/proto/bet.proto";
+
+message PlayerDataRecall {
+  commonFS.proto.EMSGID msgid = 1;
+  repeated PlayerData playerData = 2;
+}
+
+message PlayerDataCall {
+  commonFS.proto.EMSGID msgid = 1;
+}
+
+message PlayerData {
+  int32 seat = 1;
+  repeated bet.proto.BetCall bets = 2;
+  int32 status = 3;
+  uint64 balance = 4;
+  uint64 player_balance = 5;
+}

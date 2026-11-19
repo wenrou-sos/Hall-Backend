@@ -1,0 +1,20 @@
+syntax = "proto3";
+package heartbeat;
+
+//e_cg_msgid的子分類項目
+//enum e_heartbeat
+//{
+//    e_cg_msgid_heartbeat_speed = 2201;//網路連線速度
+//}
+
+//前端請求計算網路速度
+message heartbeat
+{
+    int32 status_code = 1;//封包接收狀態
+}
+
+//後端回傳網路速度封包
+message heartbeat_ret
+{
+    int32 status_code = 1;//封包回傳狀態
+}

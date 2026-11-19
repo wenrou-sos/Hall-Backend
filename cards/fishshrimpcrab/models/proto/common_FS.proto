@@ -1,0 +1,96 @@
+syntax = "proto3";
+package commonFS.proto;
+
+message Header {
+    EMSGID msgid                                                        = 1;
+}
+
+enum EMSGID {
+    eReserved                                                           = 0;
+
+    eA                                                                  = 3000;
+    eAvatarChangeCall                                                   = 3001;
+    eAvatarChangeRecall                                                 = 3002;
+
+    eBetCall                                                            = 3100;
+    eBetRecall                                                          = 3101;
+    eBetRoundStart                                                      = 3102;
+    eBetRoundEnd                                                        = 3103;
+    eBetRoundCountdown                                                  = 3104;
+    eBroadcastBetRecall                                                 = 3105;
+    eBroadcastClearBetsRecall                                           = 3106;
+    eBroadcastDrawRecall                                                = 3107;
+    eBroadcastResult                                                    = 3109;
+    eBroadcastLotteryResult                                             = 3110;
+    eMultiBetCall                                                       = 3111;
+    eMultiBetRecall                                                     = 3112;
+    eBroadcastMultiBetRecall                                            = 3113;
+
+    eC                                                                  = 3200;
+    eClearBetsCall                                                      = 3201;
+    eClearBetsRecall                                                    = 3202;
+
+    eDepositCall                                                        = 3300;
+    eDepositRecall                                                      = 3301;
+    eDeal                                                               = 3302;
+
+    eE                                                                  = 3400;
+
+    eF                                                                  = 3500;
+
+    eG                                                                  = 3600;
+    eGameroomHistoryCall                                                = 3601;
+    eGameroomHistoryRecall                                              = 3602;
+
+    eH                                                                  = 3700;
+    eHistory                                                            = 3701;
+
+    eI                                                                  = 3800;
+
+    eJ                                                                  = 3900;
+    eJoinedRoomInfo                                                     = 3901;
+    eJoinedBetRoundInfo                                                 = 3902;
+
+    eK                                                                  = 4000;
+    eKickOutWarn                                                        = 4001;
+
+    eL                                                                  = 4100;
+    eLotteryResult                                                      = 4101;
+
+    eM                                                                  = 4200;
+
+    eN                                                                  = 4300;
+
+    eO                                                                  = 4400;
+
+    eP                                                                  = 4500;
+    ePlayerStillBetWarn                                                 = 4501;
+    ePlayerDataCall                                                     = 4502;
+    ePlayerDataRecall                                                   = 4503;
+    ePlayerLevaeRoom                                                    = 4504;
+
+    eQ                                                                  = 4600;
+
+    eRoundStart                                                         = 4700;
+    eRoundEnd                                                           = 4701;
+    eResult                                                             = 4702;
+    eRecord                                                             = 4703;
+
+    eS                                                                  = 4800;
+
+    eT                                                                  = 4900;
+
+    eU                                                                  = 5000;
+
+    eV                                                                  = 5100;
+
+    eW                                                                  = 5200;
+    eWalletBalanceCall                                                  = 5201;
+    eWalletBalanceRecall                                                = 5202;
+
+    eX                                                                  = 5300;
+
+    eY                                                                  = 5400;
+
+    eZ                                                                  = 5500;
+}

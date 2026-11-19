@@ -1,0 +1,99 @@
+{
+    "dbs" : {
+        "game" : {
+            "host":"127.0.0.1",
+            "port":6379,
+            "db":5,
+            "password":"123456",
+            "encoding":"utf-8",
+            "path":"/tmp/redis.sock",
+            "compatible":1,
+            "decode_responses":0,
+            "socket_timeout":1.0,
+            "retry_on_timeout":1,
+            "socket_read_size":65536,
+            "socket_connect_timeout":1.0,
+            "max_connections":1024,
+            "lua_lib_cfg":{
+                "libs":[
+                    "common",
+					"channel"
+                ],
+                "preload":1,
+                "dynamic_update":1,
+                "update_hint":"scupdate"
+            },
+            "subscribe" : [ "reload"],
+            "psubscribe" : [ ]
+        },
+        "gamelist": {
+            "host": "127.0.0.1",
+            "port": 6379,
+            "db": 6,
+            "password": "123456",
+            "encoding": "utf-8",
+            "path": "/tmp/redis.sock",
+            "compatible": 1,
+            "decode_responses": 0,
+            "socket_timeout": 1.0,
+            "retry_on_timeout": 1,
+            "socket_read_size": 65536,
+            "socket_connect_timeout": 1.0,
+            "max_connections": 256,
+            "lua_lib_cfg": {
+                "libs": [ ],
+                "preload": 1,
+                "dynamic_update": 1,
+                "update_hint": "scupdate"
+            },
+            "subscribe": [],
+            "psubscribe": []
+        },
+        "subgame": {
+            "host": "127.0.0.1",
+            "port": 6379,
+            "db": 7,
+            "password": "123456",
+            "encoding": "utf-8",
+            "path": "/tmp/redis.sock",
+            "compatible": 1,
+            "decode_responses": 0,
+            "socket_timeout": 1.0,
+            "retry_on_timeout": 1,
+            "socket_read_size": 65536,
+            "socket_connect_timeout": 1.0,
+            "max_connections": 32,
+            "lua_lib_cfg": {
+                "libs": ["subgame"],
+                "preload": 1,
+                "dynamic_update": 1,
+                "update_hint": "scupdate"
+            },
+            "subscribe": [""],
+            "psubscribe": []
+        },
+        "gamelog": {
+            "host": "127.0.0.1",
+            "port": 6379,
+            "db": 2,
+            "password": "123456",
+            "encoding": "utf-8",
+            "path": "/tmp/redis.sock",
+            "compatible": 1,
+            "decode_responses": 0,
+            "socket_timeout": 1.0,
+            "retry_on_timeout": 1,
+            "socket_read_size": 65536,
+            "socket_connect_timeout": 1.0,
+            "max_connections": 256,
+            "lua_lib_cfg": {
+                "libs": [ ],
+                "preload": 1,
+                "dynamic_update": 1,
+                "update_hint": "scupdate"
+            },
+            "subscribe": [],
+            "psubscribe": []
+        }
+    }
+}

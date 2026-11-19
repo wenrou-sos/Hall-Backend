@@ -1,0 +1,180 @@
+syntax = "proto3";
+package dummy;
+
+enum e_dummy_msgid
+{
+    cg_msgid_begin           = 0;    // 消息开始ID，无用
+    cg_msgid_scene_sync      = 100;  // 场景同步(s ->c)
+    cg_msgid_period_sync     = 101;  // 阶段同步(s ->c)
+    cg_msgid_game_op         = 102;  // 玩家操作(s<- c)
+    cg_msgid_op_notify       = 103;  // 操作结果通知（广播）(s ->c)
+    cg_msgid_score_event     = 104;  // 完整的积分事件（重连可用）(s ->c)
+}
+
+enum e_gameperiod
+{
+    e_gameperiod_idle   = 0; // 对局空闲
+    e_gameperiod_start  = 1; // 对局开始
+    e_gameperiod_action = 2; // 玩家操作
+    e_gameperiod_finish = 3; // 对局结束
+}
+
+enum e_scoretype
+{
+    e_normal  = 0; // 普通加减
+    e_special = 1; // 特殊加减
+    e_finish  = 2; // 结束加减
+    e_other   = 3; // 其他（预留暂时无用）
+}
+
+enum e_specevent
+{
+    e_normalwin1 = 0; // 自己得到基礎贏分
+    e_normalwin2 = 1; // 別人得到基礎贏分
+    e_tongits1 = 2; // 自己胡牌
+    e_tongits2 = 3; // 別人胡牌了
+    e_secretmelds1 = 4; // 自己有特殊組合
+    e_secretmelds2 = 5; // 別人有特殊組合
+    e_specialcards1 = 6; // 自己有加分牌
+    e_specialcards2 = 7; // 別人有加分牌
+    e_burned1 = 8; // 自己未開張
+    e_burned2 = 9; // 別人未開張
+    e_fight1 = 10; // 自己發起比牌獲勝
+    e_fight2 = 11; // 自己發起比牌，但別人獲勝
+    e_challenge1 = 12; // 自己接受比牌獲勝
+    e_challenge2 = 13; // 自己接受比牌，但別人獲勝
+    e_ford1 = 14; // 自己放棄比牌
+    e_ford2 = 15; // 別人放棄比牌，但自己獲勝
+}
+
+enum e_gameop
+{
+    e_gameop_none     = 0x00; // 无
+    e_gameop_announce = 0x01; // 宣告
+    e_gameop_draw     = 0x02; // 抽牌
+    e_gameop_pick     = 0x04; // 捡牌
+    e_gameop_combine  = 0x08; // 出牌（组合）
+    e_gameop_insert   = 0x10; // 插牌
+    e_gameop_drop     = 0x20; // 弃牌
+    e_gameop_notopencandummy = 0x40; // 未開張一次清空
+    e_gameop_group = 0x80; // 組牌
+    e_gameop_ungroup = 0x100; // 解除組牌
+    e_gameop_fight = 0x200; // 發起比牌
+    e_gameop_challenge = 0x400; // 接受比牌
+    e_gameop_fold = 0x800; // 放棄比牌
+    e_gameop_group_reorganize = 0x2000; // 重整自動組牌
+}
+
+message combo
+{
+    uint32 combo_index    = 1; // 组合的索引
+    uint32 unique_index   = 2; // 全局唯一索引
+    repeated uint32 cards = 3; // 组合具体的牌
+}
+
+message player
+{
+    uint32 chair_id         = 1; // 座位号
+    repeated uint32 cards   = 2; // 手牌（非自己座位号时长度为1，标识手牌数）
+    repeated combo combos   = 3; // 自己场上的组合
+    uint32 gained           = 4; // 总获得积分
+    uint32 lost             = 5; // 总扣除积分
+    uint32 is_opened        = 6; // 是否开张(0:False, else:True)
+    uint32 op_allow         = 7; // 操作允许(由e_gameop组合而成)
+    repeated uint32 not_open_can_combine1 = 8; // [出牌1]
+    repeated uint32 not_open_can_combine2 = 9; // [出牌2]
+    repeated uint32 not_open_can_combine3 = 10; // [出牌3]
+    repeated uint32 not_open_can_insert = 11; // [插牌1, 插牌2,...]
+    repeated uint32 not_open_can_drop = 12; // [棄牌]
+    // [[], [[出牌1], [出牌2],...], [插牌1, 插牌2,...], [棄牌]]
+    int32 MemberLv = 13; // 玩家目前會員等級
+    int64 play_times = 14; // 生涯總遊玩次數
+    int64 all_win_times = 15; // 生涯總贏的次數
+    repeated int64 upgrade_needs_win = 16; // 所有等級的所需勝場數門檻資料格式範例[0, 10, 20, ....]
+    int32 animation_activity = 17; // 0水球未達上限，動畫要播；1水球已達上限，動畫不播
+    uint32 op_allow_fight = 18; // 是否允许比牌操作
+    uint32 compare_point = 19; // 比牌點數
+    repeated uint32 group_cards = 20; // 組牌區所有牌的陣列
+    repeated uint32 group_length = 21; // 組牌區每一個組合的長度的陣列
+    uint32 can_group = 22; // 前端要知道後端處理組牌是否成功完成
+    uint32 secret_melds = 23; // 目前是否有特殊組合(有可能取消組牌): 0沒有; 1有
+}
+
+message cardinfo
+{
+    sint32 owner      = 1; // 拥有者
+    sint32 dropper    = 2; // 丢弃者
+    uint32 card_index = 3; // 索引
+}
+
+message desktop
+{
+    uint32 first_sea            = 1; // 第一张海底
+    repeated cardinfo cardinfos = 2; // 明牌信息
+}
+
+message scoreevent
+{
+    uint32 chair_id       = 1; // 事件触发目标
+    e_scoretype main_type = 2; // 主分类
+    uint32      sub_type  = 3; // 次分类（normal时，指示操作；spec时，指示事件ID；其他情况无效）
+    sint32 score          = 4; // 积分
+}
+
+message msg_scene_sync
+{
+    uint64 cell_score            = 1; // 底注
+    bytes round_sign             = 2; // 局号
+    repeated uint32 period_times = 3; // 阶段时间
+    uint32 out_tax               = 4; // 手续率
+}
+
+message msg_period_sync
+{
+    e_gameperiod period        = 1; // 阶段
+    uint32 period_end_time     = 2; // 阶段终止时间
+    uint32 op_chair_id         = 3; // 当前操作玩家(仅period == e_gameperiod_action时有效)
+    uint32 deck_remain         = 4; // 牌库剩余数(仅period != e_gameperiod_idle时有效)
+    repeated uint32 sea_bottom = 5; // 海底牌，按顺序第一张在最下面，最后一张在最上面(仅period != e_gameperiod_idle时有效)
+    repeated player players    = 6; // 玩家数据(仅period != e_gameperiod_idle时有效)
+    desktop dt_info            = 7; // 桌面信息（走重连流程才有效）
+    repeated uint32 bankruptcy_player = 8; // 破產玩家列表
+    repeated uint32 leverage_player = 9; // 以小博大玩家列表
+    repeated uint32 final_rank = 10; // 座號排序列表
+    uint32 continue_game_count = 11; // 累計同桌玩了N局；繼續遊戲N-1局
+    int32 auto_operate = 12; // 遊戲結束前是否由電腦操作，0 否 1 是
+    uint32 challenge_end_time = 13; // 接受比牌的玩家思考時間
+}
+
+message msg_game_op
+{
+    e_gameop op_type        = 1; // 操作类型
+    repeated uint32 params  = 2; // 操作相关参数
+                                 // e_gameop_announce : 无参数
+                                // e_gameop_draw     : 无参数
+                                // e_gameop_pick     : [海底牌的顺序索引, 组合牌的索引...]
+                                // e_gameop_combine  : [组合牌的索引...]
+                                // e_gameop_insert   : [插入牌索引, 被插组合的唯一索引]
+                                // e_gameop_drop     : [被丢弃牌索引]
+                                // e_gameop_notopencandummy  : [ [] , [] , [] , [] ]
+                                // e_gameop_group : [49, 50, 51]
+                                // e_gameop_ungroup : [49]
+                                // e_gameop_fight : [座號0]
+                                // e_gameop_challenge : [座號0]
+                                // e_gameop_fold : [座號0]
+                                // e_gameop_group_reorganize : [1, 2, 3, 99, 49, 50, 51, 99]
+}
+
+message msg_op_notify
+{
+    uint32 chair_id        = 1; // 操作座位号
+    e_gameop op_type       = 2; // 操作类型
+    repeated uint32 params = 3; // 操作相关参数
+    msg_period_sync data   = 4; // 附带阶段同步以及数据
+    repeated scoreevent events = 5; // 积分事件
+}
+
+message msg_score_event
+{
+    repeated scoreevent events = 1; // 积分事件
+}

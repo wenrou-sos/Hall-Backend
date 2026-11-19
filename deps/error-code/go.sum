@@ -1,0 +1,10 @@
+github.com/gogo/protobuf v1.3.1/go.mod h1:SlYgWuQ5SjCEi6WLHjHCa1yvBfUnHcTbrrZtXPKa29o=
+github.com/kisielk/errcheck v1.2.0/go.mod h1:/BMXB+zMLi60iA8Vv6Ksmxu/1UDYcXs4uQLJ+jE2L00=
+github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
+gitlab.iplaystar.net/game-server/common v0.0.2 h1:nJEsWPC7duD4bwxjSzPAUrlEW6YBCdX/Uc5KTT/3m5M=
+gitlab.iplaystar.net/game-server/common v0.0.2/go.mod h1:SroAOQNe0fQZVyzwTTHVPq32RyiTcXm7JRbN5D+uls0=
+gitlab.iplaystar.net/game-server/common v0.0.4 h1:D9dbE7M7OxzMEibi51YhoY8OrGcPMiwzzUVZtYTG50I=
+gitlab.iplaystar.net/game-server/common v0.0.4/go.mod h1:SroAOQNe0fQZVyzwTTHVPq32RyiTcXm7JRbN5D+uls0=
+gitlab.iplaystar.net/game-server/flux v0.0.1 h1:jXUFI93QP/k5iTNTH7hpCiCj8bOdipdb+0YzmlUu4t4=
+gitlab.iplaystar.net/game-server/flux v0.0.1/go.mod h1:0g6ikXTRbRxtQYiRGVivX3+F6yrdr54IqGWL06C0MoE=
+golang.org/x/tools v0.0.0-20181030221726-6c7e314b6563/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=

@@ -1,0 +1,52 @@
+{
+    "dbs" : {
+        "game" : {
+            "host":"192.168.10.64",
+            "port":6379,
+            "db":5,
+            "password":"123456",
+            "encoding":"utf-8",
+            "path":"/tmp/redis.sock",
+            "compatible":1,
+            "decode_responses":0,
+            "socket_timeout":1.0,
+            "retry_on_timeout":1,
+            "socket_read_size":65536,
+            "socket_connect_timeout":1.0,
+            "max_connections":10240,
+            "lua_lib_cfg":{
+                "libs":[
+                    "common"
+                ],
+                "preload":1,
+                "dynamic_update":1,
+                "update_hint":"scupdate"
+            },
+            "subscribe" : ["sg_event", "reloadcfg", "gm_proxy"],
+            "psubscribe" : [ ]
+        },
+        "gamelist" : {
+            "host":"192.168.10.64",
+            "port":6379,
+            "db":6,
+            "password":"123456",
+            "encoding":"utf-8",
+            "path":"/tmp/redis.sock",
+            "compatible":1,
+            "decode_responses":0,
+            "socket_timeout":1.0,
+            "retry_on_timeout":1,
+            "socket_read_size":65536,
+            "socket_connect_timeout":1.0,
+            "max_connections":10240,
+            "lua_lib_cfg":{
+                "libs":[ "gamelist" ],
+                "preload":1,
+                "dynamic_update":1,
+                "update_hint":"scupdate"
+            },
+            "subscribe" : [ ],
+            "psubscribe" : [ ]
+        }
+    }
+}

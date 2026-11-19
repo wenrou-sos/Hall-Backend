@@ -1,0 +1,42 @@
+syntax = "proto3";
+package probability.proto;
+
+import "u-game-server/models/proto/commonU.proto";
+
+message Result {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    repeated PlayerData player_data                                        = 3;
+    uint32 charge                                                          = 4;
+    repeated int32 bankruptcy                                              = 5;
+}
+
+message PlayerData {
+    int32 seat                                                             = 1;
+    Cards cards                                                            = 2;
+    int32 poker_number                                                     = 3;
+    repeated int32 play_card                                               = 4;
+    uint32 all_win                                                         = 5;
+    int64 all_score                                                        = 6;
+    uint64 cent                                                            = 7;
+    int32 rank                                                             = 8;
+    uint32 max_win                                                         = 9;
+    string avatar                                                          = 10; // for game record
+}
+
+message Cards {
+    repeated int32 hands                                                   = 1;
+    int32 sum_point                                                        = 2;  
+}
+
+message BroadcastResult {
+    common.u.proto.EMSGID msgid                                            = 1;
+    Result result                                                          = 2;
+    int32 continue                                                         = 3; // 0:no 1:yes
+}
+
+message BroadcastRanking {
+    common.u.proto.EMSGID msgid                                            = 1;
+    repeated PlayerData player_data                                        = 2;
+    int32 type                                                             = 3; // 0:uno 1:predict
+}

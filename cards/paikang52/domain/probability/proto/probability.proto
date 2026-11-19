@@ -1,0 +1,49 @@
+syntax = "proto3";
+package probability.proto;
+
+import "52-game-server/models/proto/common_52.proto";
+
+message Result {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    repeated PlayerData player_data                                        = 3;
+    uint32 charge                                                          = 4;
+    repeated int32 bankruptcy                                              = 5;
+}
+
+message PlayerData {
+    int32 seat                                                             = 1;
+    Cards cards                                                            = 2;
+    int32 poker_number                                                     = 3;
+    repeated int32 play_card                                               = 4;
+    uint32 change_win                                                      = 5;
+    uint64 change_score                                                    = 6;
+    uint32 all_win                                                         = 7;
+    int64 all_score                                                        = 8;
+    uint64 cent                                                            = 9;
+    int32 rule                                                             = 10;
+    int32 win_count                                                        = 11;
+    uint64 hit_win                                                         = 12; // for game record
+    uint64 hit_lose                                                        = 13; // for game record
+    repeated HitCards hit_win_cards                                        = 14; // for game record
+    repeated HitCards hit_lose_cards                                       = 15; // for game record
+    int64 showdown_score                                                   = 16; // for game record
+}
+
+message Cards{
+    repeated int32 hands                                                   = 1;
+    int32 sum_point                                                        = 2;  
+}
+
+message HitCards{
+    repeated int32 cards                                                   = 1;
+}
+
+message BroadcastResult {
+    common52.proto.EMSGID msgid                                            = 1;
+    Result result                                                          = 2;
+}
+
+message ResultMap {
+    map<string, Cards> result_map                                          = 1;
+}

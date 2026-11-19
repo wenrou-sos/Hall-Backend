@@ -1,0 +1,58 @@
+[
+    {
+        "test_url" : "redis://:123456@127.0.0.1:6379/15", 
+        "url" : "redis://:123456@127.0.0.1:6379/5",
+        "global_vars" : {
+            "uuid" : 10000,
+            "chluid" : 1,
+            "pwdpoolidx" : 0,
+            "acc2uuid" : {
+                "_holder" : "_holder"
+            },
+            "uuid2sid" : {
+                "_holder" : "_holder"
+            }
+        },
+        "scripts_src" : {
+            "common" : [
+                "GenAcc",
+                "GetInfoByACC",
+                "GetInfoBySYS",
+                "OnLogin",
+                "OnLogout",
+                "OnLoginSG",
+                "OnLogoutSG",
+                "OnRegAcc",
+                "SetInfoByACC",
+                "SetInfoBySYS",
+                "OnKeepAlive",
+                "GetTablePwd"
+            ],
+            "channel" : [
+                "CreateNew",
+                "GetInfo",
+                "Remove"
+            ]
+        }
+    },
+    {
+        "test_url" : "redis://:123456@127.0.0.1:6379/15",
+        "url" : "redis://:123456@127.0.0.1:6379/6",
+        "global_vars" : {
+            "serverlist" : ""
+        },
+        "scripts_src" : { }
+    },
+    {
+        "test_url" : "redis://:123456@127.0.0.1:6379/15",
+        "url" : "redis://:123456@127.0.0.1:6379/7",
+        "global_vars" : { },
+        "scripts_src" : {
+            "subgame" : [
+                "FlushExt",
+                "SaveData",
+                "SaveExt"
+            ]
+        }
+    }
+]

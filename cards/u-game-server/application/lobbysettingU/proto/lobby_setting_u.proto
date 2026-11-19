@@ -1,0 +1,59 @@
+syntax = "proto3";
+package lobby.setting.u.proto;
+
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.0.8/proto/common.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/auth@v0.1.7/proto/auth.proto";
+import "u-game-server/domain/probability/proto/probability.proto";
+import "u-game-server/domain/gamerecoveryU/proto/game_recovery_u.proto";
+
+message ConfigRecall {
+    message Bets {
+        repeated uint32 bet                                                = 1;
+    }
+    message RoomInfo {
+        string game_id                                                     = 1;
+        uint32 subgame_id                                                  = 2;
+        repeated Bets levels                                               = 3;
+        repeated uint32 line                                               = 4;
+        uint32 bets                                                        = 5;
+        uint32 balance_limit                                               = 6;
+        uint32 banker_limit                                                = 7;
+        uint32 room_limit                                                  = 8;
+        repeated uint32 waiting_time                                       = 9;
+        repeated string languages                                          = 10;
+        uint32 languages_default_index                                     = 11;
+    }
+    message Column {
+        bool atm_icon                                                      = 1;
+        bool atm_dashboard                                                 = 2;
+        bool friendroom_icon                                               = 3;
+    }
+    message ResumeGame {
+        repeated probability.proto.PlayerData player_data                  = 1;
+        repeated auth.proto.PlayerInfo player_info                         = 2;
+        gamerecovery.u.proto.GameRecovery game_recovery                    = 3;
+        uint32 pool                                                        = 4;
+        int32 seat                                                         = 5;
+        int32 start_seat                                                   = 6;
+        repeated uint32 waiting_time                                       = 7;
+        string banker_uuid                                                 = 8;
+        int32 direction                                                    = 9; // 0:順時針 1:逆時針
+        int32 last_card                                                    = 10;
+        int32 round_time                                                   = 11;
+        uint64 accounting_sn                                               = 12;
+        int32 last_color                                                   = 13;
+        int32 penalty                                                      = 14;
+    }
+    common.proto.EMSGID msgid                                              = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    auth.proto.PlayerInfo player_info                                      = 3;
+    repeated RoomInfo room_info                                            = 4;
+    repeated uint32 transfer_credit                                        = 5;
+    Column visible                                                         = 6;
+    uint64 balance                                                         = 7;
+    uint64 cent                                                            = 8;
+    ResumeGame resume_game                                                 = 9;
+    uint32 fee                                                             = 10;
+    int32 wallet_type                                                      = 11;
+}
+

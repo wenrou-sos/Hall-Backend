@@ -1,0 +1,28 @@
+syntax = "proto3";
+package main_cmd;
+
+//主消息id
+enum e_main_msgid
+{
+    e_msgid_null                     = 0;
+    // 登录服主命令
+    e_msgid_login                    = 11;//客户端-登录服，登录相关
+    e_msgid_lobby                    = 12;//客户端-登录服，大厅相关
+
+    // 游戏服主命令
+    e_msgid_game_login               = 30;//客户端-游戏服，登录相关
+    e_msgid_game_action              = 31;//客户端-游戏服，游戏数据相关,起立,准备,踢人等
+
+    // 登录服-游戏服主命令
+    e_msgid_game_register            = 50;//登录服-游戏服，游戏服注册到登录服
+    e_msgid_user                     = 51;//登录服-游戏服，玩家数据相关
+    e_msgid_broadcast                = 52;//登录服-游戏服，广播相关
+    e_msgid_ctl                      = 53;
+	e_msgid_monitor					 = 54;
+
+    // 子游戏消息
+    e_msgid_child_begin              = 100;
+    e_msgid_dummy                    = 200; //dummy
+    e_msgid_child_end                = 999;
+}
+

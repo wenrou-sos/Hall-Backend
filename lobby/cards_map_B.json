@@ -1,0 +1,8 @@
+{
+  "PSC-ON-00010": {"client_port": 8097, "server_port": 8913, "endpoint": "service", "server_repo_id": 201},
+  "PSC-ON-00011": {"client_port": 8098, "server_port": 8913, "endpoint": "service", "server_repo_id": 201},
+  "PSC-ON-00013": {"client_port": 8099, "server_port": 8914, "endpoint": "card", "server_repo_id": 124},
+  "PSC-ON-00014": {"client_port": 8100, "server_port": 8914, "endpoint": "card", "server_repo_id": 124},
+  "PSC-ON-00015": {"client_port": 8101, "server_port": 8915, "endpoint": "service", "server_repo_id": 178},
+  "PSC-ON-00016": {"client_port": 8102, "server_port": 8916, "endpoint": "card", "server_repo_id": 154}
+}

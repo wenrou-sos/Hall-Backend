@@ -1,0 +1,54 @@
+---
+# 【Tongits】發佈
+# 執行節點主機 192.168.10.78
+# DEV STAGE PROD 都會直接覆蓋程式碼
+
+- name: 佈署 new tongits gs docker
+  hosts: "{{ host }}"
+  gather_facts: no
+  become: yes
+  vars:
+    replace: false        # 是否覆蓋原始碼
+    docker_username: "dummy"
+    docker_password: "playstar123"
+    DOCKER_IP: "{{ DOCKER_IP }}"
+    DOCKER_IMAGE: "{{ DOCKER_IMAGE }}"
+    docker_name: "{{ docker_name }}"
+    assist: '{{ assist }}'
+    center: '{{ center }}'
+    game: '{{ game }}'
+    demo: '{{ demo }}'
+    service: '{{ service }}'
+    game_port: '{{ game_port }}'
+    service_port: '{{ service_port }}'
+
+  tasks:
+    - name: docker 登入 server
+      command: sudo docker login -u {{ docker_username }} -p {{ docker_password }} {{ DOCKER_IP }}
+
+    - name: Stop and remove old container
+      docker_container:
+        name:  "{{ docker_name }}"
+        state: absent
+
+    - name: "Start new tongits gs server container {{ assist }} {{ center }} {{ game }} {{ demo }} {{ service }}"
+      docker_container:
+        name: "{{ docker_name }}"
+        image: "{{ DOCKER_IP }}/{{ DOCKER_IMAGE }}"
+        pull: true
+        state: started
+        working_dir: "/dummy/server_dummy/dummy/"
+        command: "/dummy/server_dummy/dummy/start_server.sh {{ assist }} {{ center }} {{ game }} {{ demo }} {{ service }}"
+        ports:
+          - 9301:9301
+          - 9311:9311
+          - "{{ service_port }}:{{ service_port }}"
+        volumes:
+          - "/tongits/assist/log:/dummy/server_dummy/dummy/assist/log"
+          - "/tongits/center/log:/dummy/server_dummy/dummy/center/log"
+          - "/tongits/service/log:/dummy/server_dummy/dummy/service/log"
+          - "/tongits/game/log:/dummy/server_dummy/dummy/game/log"
+        # Do not specify network, use default
+
+    # - name: Prune unused Docker images
+    #   shell: docker image prune -a -f

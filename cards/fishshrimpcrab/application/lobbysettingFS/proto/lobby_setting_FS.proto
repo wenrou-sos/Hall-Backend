@@ -1,0 +1,24 @@
+syntax = "proto3";
+package lobby.settingFS.proto;
+
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.1.2/proto/common.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/auth@v0.1.7/proto/auth.proto";
+
+message ConfigRecall {
+    message Bets {
+        repeated uint32 bet                                                = 1;
+    }
+    message RoomInfo {
+        string game_id                                                     = 1;
+        repeated Bets levels                                               = 3;
+        repeated uint32 line                                               = 4;
+        repeated uint32 rates                                              = 5;
+        repeated uint32 bet_time                                           = 6;
+        repeated string languages                                          = 7;
+        uint32 languages_default_index                                     = 8;
+    }
+    common.proto.EMSGID msgid                                              = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    auth.proto.PlayerInfo player_info                                      = 3;
+    repeated RoomInfo room_info                                            = 4;
+}

@@ -1,0 +1,8 @@
+{
+    "port" : 9301,
+    "redis_cfg_path" : "cfg/redis.json",
+    "mysql_cfg_path" : "cfg/mysql.json",
+    "dbg_lv" : 2,
+    "redis_dbg_lv" : 2,
+    "mysql_dbg_lv" : 2
+}

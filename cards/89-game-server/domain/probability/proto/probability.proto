@@ -1,0 +1,42 @@
+syntax = "proto3";
+package probability.proto;
+
+import "89-game-server/models/proto/common_89.proto";
+
+message Result {
+    enum ACTION {
+        SETTLEMENT                                                         = 0;
+        SHOWDOWN                                                           = 1;
+    }
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    ACTION action                                                          = 3;
+    repeated Card cards                                                    = 4;
+}
+
+message Card {
+    enum STATUS {
+        NONE                                                               = 0;
+        LOSE                                                               = 1;
+        WIN                                                                = 2;
+        TIE                                                                = 3;
+    }
+    int32 seat                                                             = 1;
+    repeated int32 hand                                                    = 2;
+    int32 sum_point                                                        = 3;
+    uint64 pay                                                             = 4;
+    int32 rule                                                             = 5;
+    uint64 cent                                                            = 6;
+    STATUS status                                                          = 7;
+    uint64 player_cent                                                     = 8;
+    int32 suit                                                             = 9;
+}
+
+message BroadcastResult {
+    common89.proto.EMSGID msgid                                            = 1;
+    Result result                                                          = 2;
+}
+
+message ResultMap {
+    map<string, Card> result_map                                           = 1;
+}

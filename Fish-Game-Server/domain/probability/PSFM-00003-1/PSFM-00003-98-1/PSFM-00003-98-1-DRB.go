@@ -1,0 +1,27 @@
+package PSFM_00003_98_1
+
+import (
+    PSFM_00003_1 "fish-game-server/domain/probability/PSFM-00003-1"
+    "fish-game-server/models"
+    "path/filepath"
+)
+
+var drb = "domain/probability/PSFM-00003-1/PSFM-00003-98-1/PSFM-00003-98-1-DRB.go"
+
+var RTP98DRB = &rtp98drb{
+    MathInfo: PSFM_00003_1.MathInfo{
+        Docker:   PSFM_00003_1.DOCKER,
+        Test:     filepath.Dir(drb),
+        Folder:   PSFM_00003_1.FOLDER + PSFM_00003_1.RTP98,
+        File:     "PSFM-00003-98-1-DRB.json",
+        FileType: models.DRB,
+    },
+}
+
+type rtp98drb struct {
+    PSFM_00003_1.MathInfo
+}
+
+func init() {
+    RTP98DRB.Deserialization()
+}

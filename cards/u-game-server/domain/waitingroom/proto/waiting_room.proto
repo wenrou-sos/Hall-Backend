@@ -1,0 +1,17 @@
+syntax = "proto3";
+package waiting.room.proto;
+
+import "u-game-server/models/proto/commonU.proto";
+
+message WaitingRoundStart {
+    common.u.proto.EMSGID msgid                                            = 1;
+}
+
+message WaitingCountdown {
+    common.u.proto.EMSGID msgid                                            = 1;
+    uint64 countdown                                                       = 2;
+}
+
+message WaitingRoundEnd {
+    common.u.proto.EMSGID msgid                                            = 1;
+}

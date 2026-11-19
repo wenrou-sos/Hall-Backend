@@ -1,0 +1,9 @@
+{
+"updatetime": "2020-01-01 00:05:05",
+  "newslist":
+[
+  {"newsindex": 3,"type": 0,"title": "Android 開放下載","newstime": "2019-01-01 00:00:00","content": "Android 已經開放下載, 請到點擊右邊 Google Play 連結下載"},
+  {"newsindex": 2,"type": 1,"title": "龍虎榜前三名大獎勵分數","newstime": "2019-01-01 00:00:02","content": "龍虎榜單每款遊戲都有機會拿到前三名大獎 !!"},
+  {"newsindex": 1,"type": 2,"title": "Gash 點卡與錢包開放使用","newstime": "2019-01-01 00:00:03","content": "親愛的貴賓您好, Gash 點卡與錢包已經開始用瞜, 歡迎多多使用方變又快速的 Gash"}
+]
+}

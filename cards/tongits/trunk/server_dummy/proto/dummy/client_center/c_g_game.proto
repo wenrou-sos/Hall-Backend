@@ -1,0 +1,262 @@
+syntax = "proto3";
+package c_g_game;
+
+enum e_cg_msgid
+{
+    e_cg_msgid_null                 = 0;
+    e_cg_msgid_login                = 2001;//登入
+    e_cg_msgid_logout               = 2002;//登出
+    e_cg_msgid_ready                = 2100;//准备
+    e_cg_msgid_sitdown_bc           = 2101;//坐下广播
+    e_cg_msgid_sitdown              = 2102;//坐下(包含快速坐下)
+    e_cg_msgid_match                = 2103;//匹配
+    e_cg_msgid_standup              = 2104;//起立离开坐位
+    e_cg_msgid_kick_user            = 2105;//踢出玩家
+    e_cg_msgid_enter_table          = 2106;//进入桌子
+	  e_cg_msgid_create_toom			= 2107;
+	  e_cg_msgid_join_room			= 2108;
+	  e_cg_msgid_start_game			= 2109;
+    e_cg_msgid_money_change         = 2110;//分数变化
+    e_cg_msgid_broadcast            = 2111;//游戏广播
+	  e_cg_msgid_changetable			= 2112;
+	  e_cg_msgid_ownerchange			= 2113;
+	  e_cg_msgid_main_and_dummy_wallet      = 2114;//查詢目前玩家的主錢包與dummy錢包金額
+	  e_cg_msgid_transfer_money             = 2115;//轉入玩家指定金額至dummy錢包
+	  e_cg_msgid_msg_member           = 2116;//會員機制
+    e_cg_msgid_heartbeat_speed = 2201;//網路連線速度
+}
+
+//玩家数据对象
+message user_info_data
+{
+    int32 uuid                      = 1;//账号ID
+    bytes account                   = 2;//账号
+    int64 game_id                   = 3;//游戏 I D
+    bytes nickname                  = 4;//昵称
+    int32 faceid                    = 5;//头像id
+    int32 experience                = 6;//经验数值
+    int64 score                     = 8;//金币
+    int32 usertype                  = 10;//0未知，1真实玩家，2机器人，3银商
+    int32 device_type               = 11;//0未知，1android, 2 ios, 3 pc
+}
+message msg_user_login
+{
+    int32 uuid                      = 1;// 账号ID
+    int32 token                     = 2;// 玩家token
+    string sdk_uuid                 = 3;// account = host_api_key + nickname
+    string channel                  = 4;// host_api_key
+    int32 faceid                    = 5;
+    int32 score                     = 6;
+    string access_token             = 7;
+    string source                   = 8;// "PC"
+    int32 profit                    = 9;
+    int32 dailyprofit               = 10;
+    int32 lastscoretime             = 11;
+    int32 regtime                   = 12;
+    int32 lastlogintime             = 13;
+    string jsondata                 = 14;
+    int32 banned                    = 15;
+    string game_id                  = 16;
+    int32 VIP                       = 17;
+}
+message msg_user_login_ret
+{
+    int32 ret                       = 1;
+    int32 server_id                 = 2;
+    int32 uuid                      = 3;
+    int64 score                     = 4;
+    bytes nickname                  = 5;
+    int32 status                    = 6;
+	int32 match_time				= 7;
+	int32 multi_host_uuid			= 8; // 多代理商玩家的uuid
+	int32 can_enter_room            = 9; // 此廳人數是否達到上限，玩家可否進房
+}
+message msg_user_logout
+{
+    int32 uuid                      = 1;//账号I D
+}
+message msg_user_logout_ret
+{
+    int32 uuid                      = 1;//账号I D
+    int32 reason                    = 2;
+}
+//点击准备
+message msg_ready
+{
+    int32 op                        = 1;//1准备，-1取消准备，0未操作
+}
+//此消息可群发
+message msg_ready_ret
+{
+	int32 ret						= 1;
+    int32 chair_id                  = 2;//点击准备的人
+    int32 state                     = 3;//0未准备，1已准备
+}
+
+message user_game_info
+{
+    int32 uuid                      = 1;
+    bytes nickname                  = 2;
+    int32 chair_id                  = 3;
+    int32 play_status               = 5;//游戏状态
+    int32 faceid                    = 7;
+    int64 score                     = 9;
+    int64 CurHeadFrame              = 10;//玩家目前頭像框
+    int32 CurTitle                  = 11;//玩家目前稱號
+    int32 MemberLv                  = 12;//玩家目前會員等級
+    int64 play_times                = 13;//生涯總遊玩次數
+    int64 all_win_times             = 14;//生涯總贏的次數
+    repeated int32 UpgradeNeedWins  = 15;//所有等級的所需勝場數門檻
+    int32 pokerType                 = 16;//撲克牌樣式
+}
+
+message msg_sitdown
+{
+    int32 table_id                  = 1;//桌子
+    int32 chair_id                  = 2;//椅子
+    int32 table_pwd                 = 3;//密码
+}
+message msg_sitdown_ret
+{
+    int32 table_id                          = 1;//桌子
+    int32 chair_id                          = 2;//椅子
+    int32 ret                               = 3;//0成功，1低于最低积分，2高于积分数, 3已经坐下，4桌子和椅子数非法，5没有空位，6该位置已经有人
+    repeated user_game_info active_users    = 4;//玩家列表
+    int32 table_status                      = 5;//桌子状态
+    bytes table_pwd   			            = 6;//密码
+	int32 table_owner						= 7;
+	int32 start_lefttime					= 8;
+}
+message msg_sitdown_ret_bc
+{
+    user_game_info newuser          = 1;
+}
+enum e_standup_type
+{
+    normal_standup_op               = 0;
+    changetable_standup_op          = 1;
+	enoughmoney_standup_op			= 2;
+	noready_standup					= 3;
+}
+message msg_standup
+{
+}
+//可群发
+message msg_standup_ret
+{
+    int32 chair_id                  = 1;//离开玩家
+    int32 ret                       = 2;//0成功，1失败
+    int32 reason                    = 3;
+}
+message msg_kick_user
+{
+    int32 table_id                  = 1;//桌子
+    int32 chair_id                  = 2;//椅子
+    int32 reason                    = 3;//原因，1金币不足，2游戏结束，3金币超额，4房主踢出
+}
+
+//匹配
+message msg_match
+{
+    int32 match                     = 1;  //1:匹配 2:取消匹配
+}
+message msg_match_ret
+{
+    int32 ret                       = 1;
+    int32 match                     = 2;
+}
+
+message msg_enter_table
+{
+}
+
+message msg_createroom
+{
+}
+
+message msg_createroom_ret
+{
+	int32 ret = 1;
+}
+
+message msg_joinroom
+{
+	bytes authcode						= 1;
+}
+
+message msg_joinroom_ret
+{
+	int32 ret							= 1;
+}
+
+message msg_ownerchange_ret
+{
+	int32 table_owner					= 1;
+}
+
+message msg_startgame
+{
+	int32 ret							= 1;
+}
+
+message msg_startgame_ret
+{
+}
+//空消息体
+message msg_empt
+{
+}
+message msg_change_table
+{
+
+}
+message msg_change_table_ret
+{
+    int32 ret                           = 1;//换桌错误信息 1未找到空位
+}
+
+message msg_money_change
+{
+    int32 chair_id                      = 1;//座位号
+    int64 score                         = 2;//当前钱
+    int64 delta_score                   = 3;//变化的钱
+}
+
+message msg_game_broadcast
+{
+    int32 msg_type           = 1;//消息类型
+    int32 msg_template_id               = 2;//消息模板ID
+    repeated bytes param_list           = 3;//参数列表
+}
+
+message main_and_dummy_wallet
+{
+    int32 multi_host_uuid = 1; // 多代理商玩家的uuid
+    int32 wallet_type = 2; // 錢包類型 0=獨立 1=共用
+
+}
+
+message main_and_dummy_wallet_ret
+{
+    uint64 balance = 1; // 主錢包金額
+    uint64 temp_wallet = 2; // 暫存錢包金額
+    uint64 min_admission = 3; // 最小准入
+    uint64 max_admission = 4; // 最大准入(房間最大攜入金額限制)
+    uint32 subgame_id = 5; // 遊戲桌子號
+    uint32 error_code = 6; // 錯誤代碼 0=正確 1=錯誤
+}
+
+message transfer_money
+{
+    int32 multi_host_uuid = 1; // 多代理商玩家的uuid
+    uint64 money = 2; // 要轉入的錢
+    int32 wallet_type = 3; // 錢包類型 0=獨立 1=共用
+}
+
+message transfer_money_ret
+{
+    uint32 error_code = 1; // 0=正確 1=錯誤
+    uint64 temp_wallet = 2; // 暫存錢包金額
+    int32 faceid = 3; // 頭像ID
+    string nickname = 4; // 玩家名稱member_id
+}

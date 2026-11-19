@@ -1,0 +1,91 @@
+syntax = "proto3";
+package bet.proto;
+
+import "fish-shrimp-crab-game-server/models/proto/common_FS.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.1.2/proto/common.proto";
+
+// 0~5 分別是 雞，葫蘆，蝦，虎，魚，蟹
+
+message BetCall {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    int32 seat                                                             = 2;
+    uint32 bet_type                                                        = 3;
+    uint32 bet_index                                                       = 4;
+    string bet_round_uuid                                                  = 5;
+}
+
+message BetRecall {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    int32 seat                                                             = 3;
+    uint32 bet_type                                                        = 4;
+    uint32 bet_index                                                       = 5;
+    uint64 balance                                                         = 6;
+}
+
+message BroadcastBetRecall {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    BetRecall bet_recall                                                   = 2;
+    uint64 player_balance                                                  = 3;
+}
+
+message MultiBetCall {
+  commonFS.proto.EMSGID msgid                                            = 1;
+  repeated BetCall bet_calls                                             = 2;
+}
+
+message MultiBetRecall {
+  commonFS.proto.EMSGID msgid                                            = 1;
+  repeated BetRecall bet_recalls                                         = 2;
+}
+
+message BroadcastMultiBetRecall {
+  commonFS.proto.EMSGID msgid                                            = 1;
+  MultiBetRecall bet_recall                                              = 2;
+  uint64 player_balance                                                  = 3;
+}
+
+message BetRoundStart {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    string bet_round_uuid                                                  = 3;
+}
+
+message BetRoundEnd {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+}
+
+message BetRoundCountdown {
+    commonFS.proto.EMSGID msgid                                            = 1;
+    int32 timeout                                                          = 2;
+}
+
+message ClearBetsCall {
+  commonFS.proto.EMSGID msgid                                              = 1;
+  string bet_round_uuid                                                    = 2;
+}
+
+message ClearBetsRecall {
+  commonFS.proto.EMSGID msgid                                              = 1;
+  string bet_round_uuid                                                    = 2;
+  repeated BetCall cleared_bets                                             = 3;
+  uint64 player_balance                                                    = 4;
+}
+
+message BroadcastClearBetReall {
+  commonFS.proto.EMSGID msgid                                              = 1;
+  ClearBetsRecall clear_bets_recall                                        = 2;
+  uint64 player_balance                                                    = 3;
+}
+
+message PlayerStillBetWarn {
+  commonFS.proto.EMSGID msgid                                              = 1;
+  string bet_round_uuid                                                    = 2;
+}
+
+message JoinedBetRoundInfo {
+  commonFS.proto.EMSGID msgid                                              = 1;
+  string bet_round_uuid                                                    = 2;
+  repeated BetCall bets                                                    = 3;
+}

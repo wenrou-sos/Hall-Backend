@@ -1,0 +1,63 @@
+{
+	"HITX0" : 0,
+	"HITX1" : 2,
+	"HITX2" : 3,
+	"HITX3" : {
+		"ORIGINAL" : {
+			"weight" : 15,
+			"multiples" :[
+				{
+					"multiple" : 9,
+					"weight" : 1
+				}
+			]
+		},
+		"YELLOW" : {
+			"weight" : 9,
+			"multiples" :[
+				{
+					"multiple" : 10,
+					"weight" : 1
+				},
+				{
+					"multiple" : 12,
+					"weight" : 2
+				}
+			]
+		},
+		"RED" : {
+			"weight" : 5,
+			"multiples" :[
+				{
+					"multiple" : 15,
+					"weight" : 1
+				},
+				{
+					"multiple" : 16,
+					"weight" : 3
+				},
+				{
+					"multiple" : 18,
+					"weight" : 6
+				}
+			]
+		},
+		"BLUE" : {
+			"weight" : 6,
+			"multiples" :[
+				{
+					"multiple" : 20,
+					"weight" : 1
+				},
+				{
+					"multiple" : 30,
+					"weight" : 2
+				},
+				{
+					"multiple" : 50,
+					"weight" : 7
+				}
+			]
+		}
+	}
+}

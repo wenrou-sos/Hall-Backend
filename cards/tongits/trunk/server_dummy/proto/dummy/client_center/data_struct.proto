@@ -1,0 +1,45 @@
+syntax = "proto3";
+package data_struct;
+
+message db_data_user
+{
+    int32 uuid                      = 1;
+    string account                  = 2;
+	string sdk_uuid					= 3;
+	string nickname					= 4;
+	string channel					= 5;
+	int32 faceid					= 6;
+	int64 score						= 7;
+	int64 bankscore					= 8;
+	string source					= 9;
+	int64 profit					= 10;
+	int64 dailyprofit				= 11;
+	int32 lastscoretime				= 12;
+	int32 control_status			= 13;
+	int64 control_score				= 14;
+	int32 disable_login				= 15;
+	int32 regtime					= 16;
+	int32 lastlogintime				= 17;
+	string jsondata					= 20;
+	int32 hostuuid                  = 21;
+	int32 banned                    = 22;
+	string game_id                  = 23;
+	string txn_id                   = 24;
+	int32 VIP					    = 25;
+	int32 user_type                 = 26;
+	int32 lastlogouttime            = 27;
+    string ip_address               = 28;
+    string last_game_uuid           = 29;
+    int32 lv                        = 30;
+	int64 play_times                = 31;
+	int64 all_win_times             = 32;
+	int32 frame             		= 33;
+	int32 designation				= 34;
+    int32 card_style				= 35;
+    string ten_amt                  = 36;
+    int64 sn                        = 37;
+    string sin_channel			    = 38;
+    string current_game_uuid        = 39;
+    int64 last_game_starttime       = 40;
+    string last_svr_id              = 41;
+}

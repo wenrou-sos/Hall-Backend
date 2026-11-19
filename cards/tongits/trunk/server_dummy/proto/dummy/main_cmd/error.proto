@@ -1,0 +1,29 @@
+syntax = "proto3";
+package error;
+
+enum e_error
+{
+    //通用(0~1000)
+    e_error_ok                          = 0;   //成功
+    e_error_failed                      = 1;   //失败
+    e_error_invalid                     = 2;   //无效参数
+    e_error_not_enough_money            = 3;   //金币不足
+    e_error_param_invalid               = 5;   //无效参数
+    e_error_frequently                  = 6;   //操作频繁
+    e_error_invalid_token               = 7;   //无效的token
+    e_error_invalid_conn                = 8;   //无效的链接
+
+    //登录（1001~2000）
+    e_error_version                     = 1001;     //错误的版本号
+    e_error_repeated                    = 1002;     //重复登录
+    e_error_special_acc                 = 1003;     //特殊账号
+    e_error_min_score                   = 1004;     //低于该场次最低金币限制
+    e_error_max_score                   = 1005;     //高于该场次最高金币限制
+    e_error_room_full                   = 1006;     //房间已满
+    e_error_invalid_table               = 1007;     //无效的桌子编号
+    e_error_not_leave                   = 1008;     //游戏中不能离开
+    e_error_table_full                  = 1009;     //没有可用的座位
+	e_error_not_owner					= 1010;
+	e_error_enough_player				= 1011;
+}
+

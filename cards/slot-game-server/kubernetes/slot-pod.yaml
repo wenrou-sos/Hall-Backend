@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: slot-gs-pod
+  labels:
+    app: slot-gs
+spec:
+  containers:
+    - name: slot-gs-container
+      image: gitlab-registry.iplaystar.net:5005/game-server/slot-game-server/slot-game-server:dev-test
+      ports:
+        - containerPort: 1107
+      volumeMounts:
+        - name: slot-config-volume
+          mountPath: /app/game-server.properties
+          subPath: game-server.properties
+        - name: web-request-filter-volume
+          mountPath: /app/web-request-filter.json
+          subPath: web-request-filter.json
+  imagePullSecrets:
+    - name: regcred
+  volumes:
+  - name: slot-config-volume
+    configMap:
+      name: gs-config
+  - name: web-request-filter-volume
+    configMap:
+      name: web-request-filter
+

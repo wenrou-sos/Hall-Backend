@@ -1,0 +1,4 @@
+{
+  "PSC-ON-00007": {"client_port": 8094, "server_port": 8911, "endpoint": "card", "server_repo_id": 114},
+  "PSC-ON-00008": {"client_port": 8095, "server_port": 8911, "endpoint": "card", "server_repo_id": 114}
+}

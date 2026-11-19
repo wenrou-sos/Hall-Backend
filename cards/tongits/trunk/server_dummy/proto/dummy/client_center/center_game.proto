@@ -1,0 +1,42 @@
+syntax = "proto3";
+package center_game;
+
+enum e_center_msgid{
+	e_c_msgid_null						=0;
+	e_c_msgid_register_server			=3001;
+	e_c_msgid_user_online				=3003;
+	e_c_msgid_server_info_sync			=3004;
+	e_c_msgid_server_monitor			=3005;
+}
+
+message msg_server_info{
+	int32 max_player					=1;
+	int32 cur_player					=2;
+}
+
+message msg_register_server{
+	bytes server_uuid					=1;
+	bytes hash_key						=2;
+	bytes host_api_key					=3;
+	int32 subgame_id					=4;
+	bytes server_addr					=5;
+	int32 server_port					=6;
+	int32 server_type					=7;
+	int64 cell_score					=10;
+	int64 admission_score				=11;
+	int32 max_player					=15;
+	int32 cur_player					=16;
+}
+
+message msg_register_server_ret{
+	int32 ret							=1;
+	int32 abc							=2;
+}
+
+message msg_server_monitor{
+	bytes auth							=1;
+}
+
+message msg_server_monitor_ret{
+	bytes json_data						=1;
+}

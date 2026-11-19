@@ -1,0 +1,1 @@
+python createdb.py 0 cfg/create_db_bo89.json 1

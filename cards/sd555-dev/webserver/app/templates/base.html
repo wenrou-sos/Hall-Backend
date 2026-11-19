@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% block head %}{% endblock %}
+    <title>BackEnd | {% block title %}标题{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap-slider/slider.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/pace/pace.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap-switch/bootstrap-switch.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/select2/select2.min.css') }}">
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/adminlte/css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/adminlte/css/skins/skin-blue.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <!--[if lt IE 9]>
+    <script src="plugins/html5shiv.min.js"></script>
+    <script src="plugins/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--头部-->
+    <header class="main-header">
+        <a href="{{ url_for('main.root') }}" class="logo">
+            <span class="logo-mini"><b>S</b></span>
+            <span class="logo-lg"><b>Slot War</b></span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{ url_for('static', filename='images/avatar.jpg') }}" class="user-image"
+                                 alt="User Image">
+                            <span class="hidden-xs">{{current_user.username}}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <img src="{{ url_for('static', filename='images/avatar.jpg') }}"
+                                     class="img-circle" alt="User Image">
+                                <p>
+                                    <span>{{current_user.fullname}}</span>
+                                    <small>{{current_user.email}}</small>
+                                </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="{{ url_for('main.changepassword') }}" class="btn btn-default btn-flat">Change Password</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="{{ url_for('auth.logout') }}" class="btn btn-default btn-flat">Log-out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--侧边栏-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="header">Function Nav.</li>
+
+                <li>
+                    <a href="{{ url_for('main.root') }}">
+                        <i class="fa fa-tachometer"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <span>Member</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.memberinfo') }}"><i class="fa fa-angle-right"></i>Member Info</a></li>
+                        <li><a href="{{ url_for('main.memberlist') }}"><i class="fa fa-angle-right"></i>Member List</a></li>
+                        <li><a href="{{ url_for('main.memberlvconfig') }}"><i class="fa fa-angle-right"></i>MemberLv Config</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-credit-card"></i>
+                        <span>Accounting</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>Transaction</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>Cash Flow</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>Bet History</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-shopping-bag"></i>
+                        <span>Shop</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>Store Config</a></li>
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>PiggyBuy Config</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-gift"></i>
+                        <span>Promotion</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>Piggy</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>LuckyBuy</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>DailyBonus</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>ContinuousLogin</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-television"></i>
+                        <span>WatchAD</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>AD Config</a></li>
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>AD Log</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-building"></i>
+                        <span>Camp</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.camp_info') }}"><i class="fa fa-angle-right"></i>Camp Info</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>公會資訊</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-tasks"></i>
+                        <span>Quest</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>任務管理</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>玩家任務</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-list-ol"></i>
+                        <span>Rank</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.rank_camp')}}"><i class="fa fa-angle-right"></i>Camp Rank</a></li>
+                        <li><a href="{{ url_for('main.rank_camp_detail')}}"><i class="fa fa-angle-right"></i>Camp Rank Detail</a></li>
+                        <li><a href="{{ url_for('main.rank_game') }}"><i class="fa fa-angle-right"></i>Game Rank</a></li>
+                        <li><a href="{{ url_for('main.rank_rich') }}"><i class="fa fa-angle-right"></i>Richest Rank</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-envelope"></i>
+                        <span>Mail</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>玩家郵件</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>發站內信</a></li>
+                        <li><a href="{{ url_for('main.feedback') }}"><i class="fa fa-angle-right"></i>FeedBack</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bell-o"></i>
+                        <span>Announcement</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.notifyedit') }}"><i class="fa fa-angle-right"></i>App Notification</a></li>
+                        <li><a href="{{ url_for('main.notifylist') }}"><i class="fa fa-angle-right"></i>公告訊息</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-cog"></i>
+                        <span>Admin Manager</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ url_for('main.addadmin') }}"><i class="fa fa-angle-right"></i>新增管理者</a></li>
+                        <li><a href="{{ url_for('main.admingroup') }}"><i class="fa fa-angle-right"></i>角色管理</a></li>
+                        <li><a href="{{ url_for('main.ipwhitelist') }}"><i class="fa fa-angle-right"></i>IP白名單</a></li>
+                        <li><a href="{{ url_for('main.ipwhitelist') }}"><i class="fa fa-angle-right"></i>GameConfig</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <!--导航栏-->
+        {% block navbar %}{% endblock %}
+        <!--正文-->
+        <section class="content">
+            {% block content %}{% endblock %}
+
+        </section>
+    </div>
+    <!--页脚-->
+    <footer class="main-footer">
+        Copyright &copy; 2019 <a href="http://www.playgems.net">Playgems Tech.</a>
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+    </footer>
+    <!--模态窗口-->
+    <div class="modal-wrapper">
+        <div id="alert-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                        <!--<span aria-hidden="true">&times;</span></button>-->
+                        <h4 class="modal-title">提示</h4>
+                    </div>
+                    <div class="modal-body">
+                        提示内容
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left btn-no" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-default btn-yes" data-dismiss="modal">确定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/fastclick/fastclick.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/bootstrap-slider/bootstrap-slider.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/pace/pace.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/bootstrap-switch/bootstrap-switch.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/select2/select2.full.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/adminlte/js/app.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/global.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

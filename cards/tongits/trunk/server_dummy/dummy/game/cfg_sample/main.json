@@ -1,0 +1,61 @@
+{
+    "svr_id" : 111,
+    "svr_addr" : "wss://dummy-br-06.iplaystar.net",
+    "max_connections" : 20480,
+    "ign_ori" : 1,
+    "websocket" : 1,
+    "svr_port_begin" : 12346,
+    "max_notice" : 30,
+    "websocket_ping_interval" : 10,
+    "websocket_ping_timeout" : 30,
+    "websocket_max_message_size" : 102400,
+    "auth_time" : 5,
+    "open_chls" : {
+        "internal" : "Internal"        
+    },
+    "redis_cfg_path" : "cfg/redis.json",
+    "mysql_cfg_path" : "cfg/mysql.json",
+    "test_script" : "cfg/testfile/TestScript.json",
+    "dbg_lv" : 0,
+    "redis_dbg_lv" : 1,
+    "mysql_dbg_lv" : 1,
+    "gs_ip" : "127.0.0.1",
+    "gs_port" : 9311,
+    "async" : {
+        "worker_cnt" : 16,
+        "queue_size" : 128,
+        "sleep_time" : 0.01
+    },
+    "cardshoe_count" : 100,
+	"telegram_urls" : "https://2f2rradwgeqj7zo4uxyzcilf7i0putfd.lambda-url.ap-northeast-2.on.aws",
+	"telegram_token" : "bu02",
+    "ps_urls" : {
+        "getcardshoe" : "https://dev-api.iplaystar.net/card/getcardshoe",
+	    "getbalance" : "https://dev-api.iplaystar.net/proxy/psx1/getbalance",
+        "rollin": "https://dev-api.iplaystar.net/proxy/psx1/rollin",
+        "rollout" : "https://dev-api.iplaystar.net/proxy/psx1/rollout",
+        "login" : "https://dev-api.iplaystar.net/proxy/psx1/login",
+        "logout": "https://dev-api.iplaystar.net/proxy/psx1/logout"
+    },
+    "android" :
+    {
+        "action_interval" : 1,
+        "check_action" : 2,
+        "check_status" : 30,
+        "min_wait" : 120000,
+        "max_wait" : 300000
+    },
+	"ssl" : {
+        "certfile" : "cfg/ssl/iplaystar.net.crt",
+        "keyfile" : "cfg/ssl/iplaystar.net-dec.key"
+    },
+    "multihost_redis" : {
+        "host" : "192.168.128.49",
+        "port" : 6379,
+        "db" : 2,
+        "password" : 123456,
+        "hostkey" : "bd97b4c0b825d9ba3205775ef53f9918"
+    },
+	"mm_url": "",
+    "server_math_info": "https://dev-api.iplaystar.net/proxy/psx1/ServerMathInfo"
+}

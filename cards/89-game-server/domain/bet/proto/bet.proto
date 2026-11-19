@@ -1,0 +1,51 @@
+syntax = "proto3";
+package bet.proto;
+
+import "89-game-server/models/proto/common_89.proto";
+
+message BetCall {
+    common89.proto.EMSGID msgid                                            = 1;
+    string token                                                           = 2;
+    string room_uuid                                                       = 3;
+    int32 seat                                                             = 4;
+    uint32 bet_idx                                                         = 5;
+}
+
+message BetRecall {
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 seat                                                             = 3;
+    uint32 bet_idx                                                         = 4;
+}
+
+message BroadcastBetRecall {
+    common89.proto.EMSGID msgid                                            = 1;
+    BetRecall bet_recall                                                   = 2;
+    uint64 player_cent                                                     = 3;
+}
+
+message BetTimeout {
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 seat                                                             = 3;
+    uint32 bet_idx                                                         = 4;
+}
+
+message BroadcastBetTimeout {
+    common89.proto.EMSGID msgid                                            = 1;
+    BetTimeout bet_timeout                                                 = 2;
+}
+
+message BetRoundStart {
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+}
+
+message BetRoundEnd {
+    common89.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+}
+
+message BetCentMap {
+    map<string, uint64> bet_cent_map                                       = 1;
+}

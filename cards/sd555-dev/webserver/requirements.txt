@@ -1,0 +1,5 @@
+flask
+flask-script
+flask-wtf
+flask-login
+flask-cors == 3.0.10

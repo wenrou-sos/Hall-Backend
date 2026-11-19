@@ -1,0 +1,25 @@
+syntax = "proto3";
+package broadcaster.proto;
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.0.4/proto/common.proto";
+
+enum BROADCASTER_TYPE {
+    BIG_WIN                                       = 0;
+    BONUS_WIN                                     = 1;
+    SHUTDOWN                                      = 2;
+}
+
+enum DELIVER_TYPE {
+    LOBBY                                         = 0;
+    GAME                                          = 1;
+}
+
+message Broadcaster {
+    common.proto.EMSGID msgid                     = 1;
+    DELIVER_TYPE     dv_type                      = 2; // 訊息派送種類
+    BROADCASTER_TYPE bc_type                      = 3; // 訊息類型
+    string game_id                                = 4; // 哪個遊戲
+    uint32 subgame_id                             = 5; // 哪個廳
+    string member_id                              = 6;
+    string message                                = 7; // 跑馬燈資訊
+    uint32 time                                   = 8; // 跑馬燈播放時間(單位:s)
+}

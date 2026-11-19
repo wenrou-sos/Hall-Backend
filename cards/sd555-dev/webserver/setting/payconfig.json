@@ -1,0 +1,170 @@
+{
+	"serialnumber": 
+	{
+		"enable": 1
+	}, 
+	"gashwallet": {
+		"enable": 1, 
+		"item": [
+			{
+				"pointamount": 5600, 
+				"itemcode": 1, 
+				"cashamount": 5000
+			}, {
+				"pointamount": 3300, 
+				"itemcode": 2, 
+				"cashamount": 3000
+			}, {
+				"pointamount": 2160, 
+				"itemcode": 3, 
+				"cashamount": 2000
+			}, {
+				"pointamount": 1050, 
+				"itemcode": 4, 
+				"cashamount": 1000
+			}, {
+				"pointamount": 520, 
+				"itemcode": 5, 
+				"cashamount": 500
+			}, {
+				"pointamount": 309, 
+				"itemcode": 6, 
+				"cashamount": 300
+			}, {
+				"pointamount": 153, 
+				"itemcode": 7, 
+				"cashamount": 150
+			}
+		]
+	}, 
+	"creditcard": {
+		"enable": 1, 
+		"item": [
+			{
+				"pointamount": 5600, 
+				"itemcode": 1, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 5000
+			}, {
+				"pointamount": 3300, 
+				"itemcode": 2, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 3000
+			}, {
+				"pointamount": 2161, 
+				"itemcode": 3, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 2000
+			}, {
+				"pointamount": 1050, 
+				"itemcode": 4, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 1000
+			}, {
+				"pointamount": 520, 
+				"itemcode": 5, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 500
+			}, {
+				"pointamount": 309, 
+				"itemcode": 6, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 300
+			}, {
+				"pointamount": 205, 
+				"itemcode": 7, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 200
+			}, {
+				"pointamount": 10, 
+				"itemcode": 8, 
+				"productname": "\u91d1\u723d\u9ede\u6578", 
+				"cashamount": 10
+			}
+		]
+	}, "bank": {
+		"enable": 0, 
+		"item": [
+			{
+				"pointamount": 5600, 
+				"itemcode": 1, 
+				"cashamount": 5000
+			}, {
+				"pointamount": 3300, 
+				"itemcode": 2, 
+				"cashamount": 3000
+			}, {
+				"pointamount": 2160, 
+				"itemcode": 3, 
+				"cashamount": 2000
+			}, {
+				"pointamount": 1050, 
+				"itemcode": 4, 
+				"cashamount": 1000
+			}, {
+				"pointamount": 520, 
+				"itemcode": 5, 
+				"cashamount": 500
+			}, {
+				"pointamount": 309, 
+				"itemcode": 6, 
+				"cashamount": 300
+			}, {
+				"pointamount": 205, 
+				"itemcode": 7, 
+				"cashamount": 200
+			}
+		]
+	}, "gashpoint": {
+		"enable": 1, 
+		"item": [
+			{
+				"pointamount": 5600, 
+				"itemcode": 1, 
+				"cashamount": 5000
+			}, {
+				"pointamount": 3300, 
+				"itemcode": 2, 
+				"cashamount": 3000
+			}, {
+				"pointamount": 1100, 
+				"itemcode": 3, 
+				"cashamount": 1000
+			}, {
+				"pointamount": 550, 
+				"itemcode": 4, 
+				"cashamount": 500
+			}, {
+				"pointamount": 330, 
+				"itemcode": 5, 
+				"cashamount": 300
+			}, {
+				"pointamount": 165, 
+				"itemcode": 6, 
+				"cashamount": 150
+			}, {
+				"pointamount": 110, 
+				"itemcode": 7, 
+				"cashamount": 100
+			}, {
+				"pointamount": 55, 
+				"itemcode": 8, 
+				"cashamount": 50
+			}
+		]
+	}, "webpackage": {
+		"enable": 0, 
+		"item": [
+			{
+				"content": "<tr>\r\n<td class=\"text-left\">\r\n<div class=\"row\">\r\n<div class=\"col-md-4 col-xs-12\">\r\n<img src=\"/static/images/product/888.png\">\r\n</div>\r\n<div class=\"col-md-8 col-xs-12\">\r\n<p>\u7522\u5305\u540d\u7a31\uff1a\u4e0d\u6557\u6a5f\u7687\u5305</p>\r\n<p>\u7522\u5305\u5b9a\u50f9\uff1a$888</p>\r\n<p>\u7522\u5305\u5167\u5bb9\uff1a\r\n<ol>\r\n<li>\u57fa\u672c\u904a\u6232\u5e63\uff1a<img src=\"/static/images/%24.png\" class=\"dollars\"/>80,000</li>\r\n\r\n</li>\r\n</ol>\r\n</p>\r\n</div>\r\n</div>\r\n</td>\r\n<td class=\"itemSelectpackage-list\">\r\n<label>\r\n<input type=\"radio\" name=\"package-item\" data-name=\"\u4e0d\u6557\u6a5f\u7687\u5305\" value=\"888\" data-type=\"OfficialProduct\" data-pid=\"808.officialpackage.01.799\">\r\n</label>\r\n</td>\r\n</tr>", "pointamount": 900, "itemcode": 1, "type": 0, "cashamount": 888
+			}, {
+				"content": "<tr>\r\n<td class=\"text-left\">\r\n<div class=\"row\">\r\n<div class=\"col-sm-4 col-xs-12\">\r\n<img src=\"/static/images/product/1688.png\">\r\n</div>\r\n<div class=\"col-sm-8 col-xs-12\">\r\n<p>\u7522\u5305\u540d\u7a31\uff1a\u5a01\u529b\u767c\u8ca1\u5305</p>\r\n<p>\u7522\u5305\u5b9a\u50f9\uff1a$1688</p>\r\n<p>\u7522\u5305\u5167\u5bb9\uff1a\r\n<ol>\r\n<li>\u57fa\u672c\u904a\u6232\u5e63\uff1a<img src=\"/static/images/%24.png\" class=\"dollars\"/>120,000</li>\r\n\r\n</li>\r\n</ol>\r\n</p>\r\n</div>\r\n</div>\r\n</td>\r\n<td class=\"itemSelect\">\r\n<label>\r\n<input type=\"radio\" name=\"package-item\" data-name=\"\u5a01\u529b\u767c\u8ca1\u53051\" value=\"1688\" data-type=\"OfficialProduct\" data-pid=\"808.officialpackage.02.1199\">\r\n</label>\r\n</td>\r\n</tr>", "pointamount": 1888, "itemcode": 2, "type": 0, "cashamount": 1688
+			}, {
+				"content": "<tr>\r\n<td class=\"text-left\">\r\n<div class=\"row\">\r\n<div class=\"col-sm-4 col-xs-12\">\r\n<img src=\"/static/images/product/1688.png\">\r\n</div>\r\n<div class=\"col-sm-8 col-xs-12\">\r\n<p>\u7522\u5305\u540d\u7a31\uff1a\u91d1\u723d\u5927\u79ae\u5305</p>\r\n<p>\u7522\u5305\u5b9a\u50f9\uff1a$10000</p>\r\n<p>\u7522\u5305\u5167\u5bb9\uff1a\r\n<ol>\r\n<li>\u8cfc\u8cb7\u9ede\u6578\uff1a<img src=\"/static/images/%24.png\" class=\"dollars\"/>16000</li>\r\n<li>\u8f49\u5e33\u8cc7\u8a0a: \u9280\u884c\u4ee3\u78bc (822) \u4e2d\u570b\u4fe1\u8a17\u9280\u884c</li>\r\n<li>\u5e33\u6236: \u73a9\u9250\u79d1\u6280\u80a1\u4efd\u6709\u9650\u516c\u53f8</li>\r\n<li>\u5e33\u865f: 234-54030756-3</li>\r\n<li>\u8acb\u5b8c\u6210\u8f49\u5e33\u5f8c,\u806f\u7d61\u5b98\u7db2\u5ba2\u670d\u63d0\u4f9b\u532f\u6b3e\u8cc7\u8a0a</li>\r\n\r\n</li>\r\n</ol>\r\n</p>\r\n</div>\r\n</div>\r\n</td>\r\n<td class=\"itemSelect\">\r\n<label>\r\n<input type=\"radio\" name=\"package-item\" data-name=\"\u91d1\u723d\u5927\u79ae\u5305\" value=\"10000\" data-type=\"OfficialProduct\" data-pid=\"jinsong.officialpackage.03\">\r\n</label>\r\n</td>\r\n</tr>", "pointamount": 16000, "itemcode": 3, "type": 2, "cashamount": 10000
+			}
+		]
+	}, "mycardwallet": {
+		"enable": 1, 
+		"item": []
+	}
+}

@@ -1,0 +1,86 @@
+syntax = "proto3";
+package banker.proto;
+
+import "u-game-server/models/proto/commonU.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/auth@v0.1.7/proto/auth.proto";
+import "u-game-server/domain/probability/proto/probability.proto";
+
+message RoundStart {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    string banker_uuid                                                     = 3;
+    repeated auth.proto.PlayerInfo player_infos                            = 4;
+    int32 card                                                             = 5;
+    uint32 round_time                                                      = 6;
+    uint64 accounting_sn                                                   = 7;
+}
+
+message RoundEnd {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+}
+
+message PlayerRoundStart {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 seat                                                             = 3;
+    int32 penalty                                                          = 4;
+}
+
+message BroadcastPlayerRoundStart {
+    common.u.proto.EMSGID msgid                                            = 1;
+    PlayerRoundStart player_round_start                                    = 2;
+}
+
+message Deal {
+    common.u.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    probability.proto.Cards cards                                          = 3;
+    int32 pool                                                             = 4;
+    int32 seat                                                             = 5;
+}
+
+message Card {
+    repeated int32 hand                                                    = 1;
+    int32 sum_point                                                        = 2;
+}
+
+message Penalty {
+    common.u.proto.EMSGID msgid                                            = 1;
+    repeated int32 cards                                                   = 2;
+    int32 cardNum                                                          = 3;
+    probability.proto.PlayerData player_data                               = 4;
+    uint32 pool                                                            = 5;
+}
+
+message BroadcastPenalty {
+    common.u.proto.EMSGID msgid                                            = 1;
+    Penalty penalty                                                        = 2;
+    int32 seat                                                             = 3;
+}
+
+message KeepCall {
+    common.u.proto.EMSGID msgid                                            = 1;
+}
+
+message KeepRecall {
+    common.u.proto.EMSGID msgid                                            = 1;
+}
+
+message BroadcastKeepRecall {
+    common.u.proto.EMSGID msgid                                            = 1;
+    int32 seat                                                             = 2;
+}
+
+message KeepTimeout {
+    common.u.proto.EMSGID msgid                                            = 1;
+}
+
+message BroadcastKeepTimeout {
+    common.u.proto.EMSGID msgid                                            = 1;
+    int32 seat                                                             = 2;
+}
+
+message BroadcastShuffle {
+    common.u.proto.EMSGID msgid                                            = 1;
+}

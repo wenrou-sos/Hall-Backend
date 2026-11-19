@@ -1,0 +1,13 @@
+syntax = "proto3";
+package walletFS.proto;
+
+import "fish-shrimp-crab-game-server/models/proto/common_FS.proto";
+
+message WalletBalanceCall {
+  commonFS.proto.EMSGID msgid                                            = 1;
+}
+
+message WalletBalanceRecall {
+  commonFS.proto.EMSGID msgid                                            = 1;
+  uint64 player_balance                                                  = 2;
+}

@@ -1,0 +1,29 @@
+{
+    "dbs" : {
+        "game" : {
+            "host" : "192.168.10.64",
+            "user" : "root",
+            "password" : "123456",
+            "database" : "dmgame",
+            "port" : 3306,
+            "charset" : "utf8",
+            "max_connection" : 16,
+            "async_mode" : 1,
+            "queue_size" : 128,
+            "sleep_time" : 0.02,
+            "workers" : 4
+        },
+        "log" : {
+            "host" : "192.168.10.64",
+            "user" : "root",
+            "password" : "123456",
+            "database" : "dmgamelog",
+            "port" : 3306,
+            "charset" : "utf8",
+            "max_connection" : 1,
+            "async_mode" : 1,
+            "queue_size" : 128,
+            "sleep_time" : 0.02
+        }
+    }
+}

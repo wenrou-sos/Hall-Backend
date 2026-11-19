@@ -1,0 +1,62 @@
+syntax = "proto3";
+package draw.proto;
+
+import "52-game-server/models/proto/common_52.proto";
+import "52-game-server/domain/probability/proto/probability.proto";
+
+message DrawRoundStart {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 seat                                                             = 3;
+}
+
+message DrawRoundEnd {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 seat                                                             = 3;
+}
+
+message BroadcastDrawRoundStart {
+    common52.proto.EMSGID msgid                                            = 1;
+    DrawRoundStart draw_round_start                                        = 2;
+}
+
+message BroadcastDrawRoundEnd {
+    common52.proto.EMSGID msgid                                            = 1;
+    DrawRoundEnd draw_round_end                                            = 2;
+}
+
+message DrawCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string token                                                           = 2;
+    string room_uuid                                                       = 3;
+    int32 seat                                                             = 4;
+    bool status                                                            = 5;
+}
+
+message DrawRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 card                                                             = 3;
+    probability.proto.PlayerData player_data                               = 4;
+    uint32 pool                                                            = 5;
+}
+
+message BroadcastDrawRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    DrawRecall draw_recall                                                 = 2;
+
+}
+
+message DrawTimeout {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 card                                                             = 3;
+    probability.proto.PlayerData player_data                               = 4;
+    uint32 pool                                                            = 5;
+}
+
+message BroadcastDrawTimeout {
+    common52.proto.EMSGID msgid                                            = 1;
+    DrawRecall draw_recall                                                 = 2;
+}

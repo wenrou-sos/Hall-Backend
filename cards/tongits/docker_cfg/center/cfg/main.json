@@ -1,0 +1,16 @@
+{
+    "port" : 9311,
+    "max_connections": 256,
+
+    "redis_cfg_path" : "cfg/redis.json",
+    "mysql_cfg_path" : "cfg/mysql.json",
+
+    "dbg_lv" : 0,
+    "redis_dbg_lv" : 1,
+    "mysql_dbg_lv" : 1,
+
+    "host_api_key" : "multi_host_key",
+    "ps_urls" : {
+        "gethostapiinfo" : "https://ps_api_addr/admin/gethostapiinfo"
+    }
+}

@@ -1,0 +1,48 @@
+syntax = "proto3";
+package game.setting52.proto;
+
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.1.2/proto/common.proto";
+import "pkg/mod/gitlab.iplaystar.net/game-server/auth@v0.1.7/proto/auth.proto";
+
+message ConfigRecall {
+    common.proto.EMSGID msgid                                              = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    string room_uuid                                                       = 3;
+    repeated uint32 line                                                   = 4;
+    uint32 bet                                                             = 5;
+    repeated uint32 waiting_time                                           = 6;
+    repeated uint32 transfer_credit                                        = 7;
+    repeated string languages                                              = 8;
+    uint32 languages_default_index                                         = 9;
+    auth.proto.PlayerInfo player_info                                      = 10;
+    uint64 balance                                                         = 11;
+    uint64 cent                                                            = 12;
+}
+
+message StripsRecall {
+    message SymbolDef {
+        enum PayType {
+            K_xFORTEST                      = 0;
+            K_xBET                          = 1;
+            K_xTOTALBET                     = 2;
+            K_xTOTALBET_BONUSTIMES          = 3;
+            K_xTOTALBETxRANDOM              = 4;
+        }
+        enum SymbolType {
+            K_FORTEST                       = 0;
+            K_SYMBOL                        = 1;
+            K_BONUS                         = 2;
+        }
+        uint32 symbol_id                    = 1;
+        SymbolType symbol_type              = 2;
+        uint32 layer_id                     = 3;
+        PayType pay_type                    = 4;
+        repeated int64 pays                 = 5;
+        repeated int32 rounds               = 6;
+    }
+    common.proto.EMSGID msgid               = 1;
+    common.proto.Status.Code status_code    = 2;
+    repeated SymbolDef all_symbol_def       = 3;
+    uint32 symbol_max_layer                 = 4;
+    string room_uuid                        = 5;
+}

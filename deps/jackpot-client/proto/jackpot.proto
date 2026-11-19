@@ -1,0 +1,182 @@
+syntax = "proto3";
+package jackpot.proto;
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.1.3/proto/common.proto";
+
+message Header {
+    MessageID message_id                                      = 1;
+}
+
+enum MessageID {
+    kUnknown                                                  = 0;
+    kClientInfoMap                                            = 1;   // Client ---> Server
+    kHitInfo                                                  = 2;   // Client <--> Server
+    kGroupInfoMap                                             = 3;   // Client <--- Server
+    kSysCall                                                  = 4;   // Client ---> Server
+    kNotifyInfo                                               = 5;   // Client <--- Server
+}
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓　Server <-> Jackpot Server　↓↓↓↓↓↓↓↓↓↓↓↓↓
+message ClientInfo {
+    string client_id                                          = 1;
+    string session_id                                         = 2; // secWebsocketKey
+    string member_id                                          = 3;
+    string host_id                                            = 4;
+    int32 host_level                                          = 5;
+    int32 group_id                                            = 6;
+    uint32 total_bet                                          = 7;
+    string game_id                                            = 8;
+    uint32 subgame_id                                         = 9;
+    uint64 accumulate_bet                                     = 10;
+    uint32 accumulate_round                                   = 11;
+    bool hit_barrier                                          = 12;
+    uint64 total_bet_long                                     = 13;
+    float exchange_rate                                       = 14;
+    string host_name                                          = 15;
+    uint64 leave_ts                                           = 16;
+    string game_server_id                                     = 17;
+}
+
+message ClientInfoMap {
+    MessageID message_id                                      = 1;
+    string client_id                                          = 2;
+    map<string, ClientInfo> map                               = 3;
+    string game_server_id                                     = 4;
+}
+
+message HostInfoMap {
+    map<string, ClientInfoMap> map                            = 1;
+}
+
+message HitInfo {
+    enum Status {
+        kHit                                                    = 0;
+        kNotified                                               = 1;
+        kCommit                                                 = 2;
+        kPaid                                                   = 3;
+        kFailed                                                 = 4;
+        kTimeout                                                = 5;
+    }
+    MessageID message_id                                      = 1;
+    ClientInfo client_info                                    = 2;
+    int32 pool_id                                             = 5;
+    int32 level                                               = 6;
+    uint64 winning_cent                                       = 7;
+    uint64 accounting_sn                                      = 8;
+    uint64 jackpot_sn                                         = 9;
+    Status status                                             = 10;
+    string pool_name                                          = 11;
+    int32 jackpot_type                                        = 12;
+    uint64 hit_time                                           = 13;
+    bool clear_accumulate_bet                                 = 14;
+    string jackpot_data                                       = 15;
+    bool is_dumb                                              = 16;
+    uint32 show_type                                          = 17;
+}
+
+message PoolInfo {
+    int32 pool_id                                             = 1;
+    int32 level                                               = 2;
+    string pool_name                                          = 3;
+    uint64 current_cent                                       = 4;
+    bool enable                                               = 5;
+    uint64 max_cent                                           = 6;
+}
+
+message PoolInfoMap {
+    int32 group_id                                            = 1;
+    map<int32, PoolInfo> map                                  = 2;
+    repeated string support_hosts                             = 3;
+    float contribution_rate                                   = 4;
+}
+
+message GroupConfig {
+    uint32 bet_limit                                          = 1;
+    uint32 imp_round_limit                                    = 2;
+    uint32 exp_round_limit                                    = 3;
+    uint64 begin_time                                         = 4;
+    uint64 end_time                                           = 5;
+    uint64 server_time                                        = 6;
+    repeated string support_hosts                             = 7;
+    int32 group_id                                            = 8;
+    uint32 show_type                                          = 9;
+    uint64 clear_acc_bet_time                                 = 10;
+    uint32 clear_acc_bet_interval                             = 11;
+}
+
+message GroupInfoMap {
+    enum Status {
+        kAll                                                    = 0;
+        kOffline                                                = 1;
+        kPartial                                                = 2;
+    }
+    MessageID message_id                                      = 1;
+    map<int32, PoolInfoMap> pool_map                          = 2;
+    Status status                                             = 3;
+    map<int32, GroupConfig> config_map                        = 4;
+    uint64 server_time                                        = 5;
+}
+
+message SysCall {
+    enum Function {
+        kRestart                                                = 0;
+        kShutdown                                               = 1;
+        kSync                                                   = 2;
+    }
+    MessageID message_id                                      = 1;
+    Function function                                         = 2;
+}
+
+message NotifyInfo {
+    enum Type {
+        kNearlyReached                                          = 0;
+    }
+    MessageID message_id                                      = 1;
+    Type type                                                 = 2;
+    PoolInfo pool_info                                        = 3;
+    int32 group_id                                            = 4;
+    int32 jackpot_type                                        = 5;
+}
+
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓　Server <-> Client　↓↓↓↓↓↓↓↓↓↓↓↓↓
+enum ECENTINTYPE {
+    eGeneral                                 = 0;
+    eJackpot                                 = 1;
+}
+
+message CentInAsk {
+    common.proto.EMSGID msgid        = 1;
+    ECENTINTYPE type                         = 2;
+    uint64 tid                               = 3;
+    uint64 cent                              = 4;
+    int32 pool_id                            = 5;
+}
+
+message CentInReask {
+    common.proto.EMSGID msgid        = 1;
+    ECENTINTYPE type                         = 2;
+    uint64 tid                               = 3;
+}
+
+message Pool {
+    int32 id                                 = 1;
+    string name                              = 2;
+    uint64 current_cent                      = 3;
+    bool enable                              = 4;
+    uint64 max_cent                          = 5;
+}
+
+message JackpotInfo {
+    common.proto.EMSGID msgid        = 1;
+    repeated Pool pool_list                  = 2;
+    common.proto.Status.Code status_code     = 3;
+    ECENTINTYPE type                         = 4;
+}
+
+message JackpotNotify {
+    enum Type {
+        kNearlyReached = 0;
+    }
+    common.proto.EMSGID msgid        = 1;
+    int32 type                               = 2;
+    int32 pool_id                            = 3;
+}

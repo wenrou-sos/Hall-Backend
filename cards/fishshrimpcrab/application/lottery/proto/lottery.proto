@@ -1,0 +1,25 @@
+syntax = "proto3";
+package lottery.proto;
+
+import "fish-shrimp-crab-game-server/models/proto/common_FS.proto";
+
+message BroadcastResult {
+  commonFS.proto.EMSGID msgid                                            = 1;
+  string room_uuid = 2;
+  repeated Result results = 3;
+  repeated int32 win_indexes = 4;
+}
+
+message Result {
+  commonFS.proto.EMSGID msgid = 1;
+  enum STATUS {
+    NONE = 0;
+    LOSE = 1;
+    WIN = 2;
+    TIE = 3;
+  }
+  int32 seat = 3;
+  uint64 pay = 4;
+  int32 status = 5;
+  uint64 player_balance = 6;
+}

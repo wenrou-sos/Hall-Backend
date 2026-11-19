@@ -1,0 +1,42 @@
+syntax = "proto3";
+package play.cards.proto;
+
+import "52-game-server/models/proto/common_52.proto";
+import "52-game-server/domain/probability/proto/probability.proto";
+
+message PlayCardsCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    int32 seat                                                             = 3;
+    repeated int32 cards                                                   = 4;
+    int32 type                                                             = 5; // 出牌:0 跟牌:1
+}
+
+message PlayCardsRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    probability.proto.PlayerData player_data                               = 3;
+    int32 hit_seat                                                         = 4;
+    repeated int64 all_score                                               = 5;
+}
+
+message BroadcastPlayCardsRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    PlayCardsRecall play_cards_recall                                      = 3;
+}
+
+message PlayCardsTimeout {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    probability.proto.PlayerData player_data                               = 3;
+    int32 hit_seat                                                         = 4;
+    repeated int64 all_score                                               = 5;
+}
+
+message BroadcastPlayCardsTimeout {
+    common52.proto.EMSGID msgid                                            = 1;
+    string room_uuid                                                       = 2;
+    PlayCardsTimeout play_cards_timeout                                    = 3;
+}
+

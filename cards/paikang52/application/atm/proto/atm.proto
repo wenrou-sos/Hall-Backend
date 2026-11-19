@@ -1,0 +1,69 @@
+syntax = "proto3";
+package atm.proto;
+
+import "pkg/mod/gitlab.iplaystar.net/game-server/common@v0.1.2/proto/common.proto";
+import "52-game-server/models/proto/common_52.proto";
+
+message DepositCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string token                                                           = 2;
+    uint64 cent                                                            = 3;
+    string GameId                                                          = 4;
+    uint32 SubgameId                                                       = 5;
+}
+
+message DepositRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    uint64 cent                                                            = 3;
+    uint64 balance                                                         = 4;
+}
+
+message WithdrawCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string token                                                           = 2;
+    uint64 cent                                                            = 3;
+}
+
+message WithdrawRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    uint64 cent                                                            = 3;
+    uint64 balance                                                         = 4;
+}
+
+message InquireCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string token                                                           = 2;
+}
+
+message InquireRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    uint64 cent                                                            = 3;
+    uint64 balance                                                         = 4;
+}
+
+message AutoTransferCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string token                                                           = 2;
+}
+
+message AutoTransferRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    uint64 cent                                                            = 3;
+    uint64 balance                                                         = 4;
+}
+
+message AutoTransferOutCall {
+    common52.proto.EMSGID msgid                                            = 1;
+    string token                                                           = 2;
+}
+
+message AutoTransferOutRecall {
+    common52.proto.EMSGID msgid                                            = 1;
+    common.proto.Status.Code status_code                                   = 2;
+    uint64 cent                                                            = 3;
+    uint64 balance                                                         = 4;
+}

@@ -1,0 +1,61 @@
+{
+    "svr_id" : 111,
+    "svr_addr" : "wss://service_addr",
+    "max_connections" : 20480,
+    "ign_ori" : 1,
+    "websocket" : 1,
+    "svr_port_begin" : 12346,
+    "max_notice" : 30,
+    "websocket_ping_interval" : 10,
+    "websocket_ping_timeout" : 30,
+    "websocket_max_message_size" : 102400,
+    "auth_time" : 5,
+    "open_chls" : {
+        "internal" : "Internal"        
+    },
+    "redis_cfg_path" : "cfg/redis.json",
+    "mysql_cfg_path" : "cfg/mysql.json",
+    "test_script" : "cfg/testfile/TestScript.json",
+    "dbg_lv" : 0,
+    "redis_dbg_lv" : 1,
+    "mysql_dbg_lv" : 1,
+    "gs_ip" : "service_ip",
+    "gs_port" : 9311,
+    "async" : {
+        "worker_cnt" : 16,
+        "queue_size" : 128,
+        "sleep_time" : 0.01
+    },
+    "cardshoe_count" : 100,
+    "ps_urls" : {
+        "getcardshoe" : "http://ps_api_addr/card/getcardshoe",
+	    "getbalance" : "http://ps_api_addr/proxy/psx1/getbalance",
+        "rollin": "http://ps_api_addr/proxy/psx1/rollin",
+        "rollout" : "http://ps_api_addr/proxy/psx1/rollout",
+        "login" : "https://ps_api_addr/proxy/psx1/login",
+        "logout": "https://ps_api_addr/proxy/psx1/logout"
+    },
+    "android" :
+    {
+        "action_interval" : 1,
+        "check_action" : 2,
+        "check_status" : 30,
+        "min_wait" : 120000,
+        "max_wait" : 300000
+    },
+    "ssl" : {
+        "certfile" : "cfg/ssl/claretfox.com.crt",
+        "keyfile" : "cfg/ssl/claretfox.com-dec.key"
+    },
+    "multihost_redis" : {
+        "host" : "192.168.128.49",
+        "port" : 6383,
+        "db" : 2,
+        "password" : 123456,
+        "hostkey" : "67511e0adfe5af8d6359240708035f42"
+    },
+    "mm_url": "",
+    "telegram_urls": "",
+    "telegram_token":"" ,
+    "server_math_info": "https://ps_api_addr/proxy/psx1/ServerMathInfo"
+}

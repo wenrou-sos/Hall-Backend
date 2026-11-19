@@ -1,0 +1,7 @@
+static
+assets
+nohup.out
+.git*
+env_setting.py
+app/main/login.py
+__pycache__
